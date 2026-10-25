@@ -1,0 +1,976 @@
+<title>Maqueta Landing Curso</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout concept: porcelain page with deep-green bands; an arched portrait frame
+   inside a rotating brass halo is the single bold moment, the rest stays quiet. */
+:root{
+  --bg:#F1F4F2; --surface:#FBFCFB; --surface-2:#E3EAE6;
+  --fg:#0E1B19; --muted:#52605C; --line:rgba(14,27,25,.13);
+  --accent-fill:#C9A15B; --accent-ink:#85591B; --on-accent:#1B1407;
+  --band-bg:#0E2420; --band-fg:#EEF2F0; --band-muted:#A5B4AF; --band-line:rgba(238,242,240,.16);
+  --shadow:0 20px 50px -26px rgba(14,27,25,.38);
+  --display:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --body:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --fs-hero:clamp(2.7rem,6.6vw,5.5rem);
+  --fs-h2:clamp(2.1rem,4.4vw,3.5rem);
+  --fs-lead:clamp(1.05rem,1.6vw,1.22rem);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#09100F; --surface:#111D1B; --surface-2:#182A27;
+    --fg:#E9EFED; --muted:#98A8A3; --line:rgba(233,239,237,.14);
+    --accent-fill:#D4AA63; --accent-ink:#E2BE80; --on-accent:#1B1407;
+    --band-bg:#0F2622; --band-fg:#EEF2F0; --band-muted:#A5B4AF; --band-line:rgba(238,242,240,.16);
+    --shadow:0 20px 50px -26px rgba(0,0,0,.75);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#09100F; --surface:#111D1B; --surface-2:#182A27;
+  --fg:#E9EFED; --muted:#98A8A3; --line:rgba(233,239,237,.14);
+  --accent-fill:#D4AA63; --accent-ink:#E2BE80; --on-accent:#1B1407;
+  --band-bg:#0F2622; --band-fg:#EEF2F0; --band-muted:#A5B4AF; --band-line:rgba(238,242,240,.16);
+  --shadow:0 20px 50px -26px rgba(0,0,0,.75);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+h1,h2,h3,h4,p,ul{margin:0}
+ul{padding:0;list-style:none}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;border-radius:6px}
+section[id]{scroll-margin-top:76px}
+
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sec{padding-block:clamp(64px,9vw,118px)}
+.ic{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* type */
+.eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--accent-ink);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+h2{font-family:var(--display);font-weight:400;font-size:var(--fs-h2);line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+h2 em,h1 em{font-style:italic;color:var(--accent-ink)}
+.lead{font-size:var(--fs-lead);color:var(--muted);max-width:60ch}
+.head{display:grid;gap:18px;margin-bottom:clamp(36px,5vw,60px)}
+.head .lead{margin-top:2px}
+
+/* placeholder marker */
+.ph{border-bottom:1.5px dotted var(--accent-ink);background:linear-gradient(transparent 64%,color-mix(in srgb,var(--accent-fill) 24%,transparent) 64%)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:16px 28px;font-weight:600;font-size:1rem;text-decoration:none;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease);isolation:isolate}
+.btn-gold{background:var(--accent-fill);color:var(--on-accent);box-shadow:0 12px 30px -12px color-mix(in srgb,var(--accent-fill) 80%,transparent)}
+.btn-gold::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);animation:shine 4.5s 1.5s infinite;z-index:-1}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 36px -14px color-mix(in srgb,var(--accent-fill) 90%,transparent)}
+.btn-gold:hover .ic{transform:translateX(4px)}
+.btn .ic{transition:transform .3s var(--ease)}
+.btn-line{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1px var(--line)}
+.btn-line:hover{box-shadow:inset 0 0 0 1px var(--accent-ink);transform:translateY(-2px)}
+.btn-lg{padding:19px 34px;font-size:1.05rem}
+@keyframes shine{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+
+/* top note + header */
+.note{background:var(--band-bg);color:var(--band-fg);font-size:.8125rem;padding-block:9px}
+.note .wrap{display:flex;gap:8px 18px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:center}
+.note b{color:var(--accent-fill);font-weight:600}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--display);font-size:1.45rem;letter-spacing:-.01em;min-width:0}
+.mono{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--band-bg);color:var(--accent-fill);font-size:1.05rem;font-style:italic;flex:none}
+.top nav{display:flex;gap:26px;font-size:.9rem;font-weight:500}
+.top nav a{text-decoration:none;color:var(--muted);position:relative;padding-block:6px;transition:color .25s}
+.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--accent-ink);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.top nav a:hover{color:var(--fg)}
+.top nav a:hover::after{transform:scaleX(1)}
+.top .btn{padding:11px 20px;font-size:.9rem}
+.progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;pointer-events:none}
+.progress i{display:block;height:100%;background:var(--accent-fill);transform:scaleX(0);transform-origin:left}
+
+/* hero */
+.hero{padding-block:clamp(36px,6vw,84px) clamp(48px,7vw,96px);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:26px 26px;-webkit-mask-image:radial-gradient(70% 80% at 80% 30%,#000,transparent);mask-image:radial-gradient(70% 80% at 80% 30%,#000,transparent);opacity:.9;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero-grid>*{min-width:0}
+.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 16px 7px 12px;font-size:.8125rem;font-weight:500}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent-fill);position:relative;flex:none}
+.dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--accent-fill);animation:ping 2s infinite}
+@keyframes ping{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.6);opacity:0}}
+h1{font-family:var(--display);font-weight:400;font-size:var(--fs-hero);line-height:.98;letter-spacing:-.02em;text-wrap:balance;margin-top:22px}
+.hero .lead{margin-top:24px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.trust{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:34px;font-size:.875rem;color:var(--muted)}
+.trust li{display:flex;align-items:center;gap:9px}
+.trust .ic{color:var(--accent-ink)}
+.rise{animation:rise 1s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+.stage{position:relative;width:100%;max-width:520px;margin-inline:auto;aspect-ratio:1/1.1}
+.halo{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 8%,var(--accent-fill) 40%,transparent 62% 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));animation:spin 14s linear infinite}
+.halo.two{inset:7%;animation-duration:22s;animation-direction:reverse;opacity:.55}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stage .arch{position:absolute;inset:8% 14% 0;translate:calc(var(--mx,0)*-8px) calc(var(--my,0)*-8px);transition:translate .4s var(--ease)}
+.ph-img{position:relative;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at 28% 18%,color-mix(in srgb,var(--accent-fill) 30%,transparent),transparent 55%),linear-gradient(165deg,var(--surface-2),var(--surface));display:grid;place-items:center;text-align:center;color:var(--muted)}
+.ph-img::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 16px,var(--line) 16px 17px);opacity:.55}
+.ph-img::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,color-mix(in srgb,var(--surface) 70%,transparent) 50%,transparent 65%);transform:translateX(-100%);animation:sheen 7s 1s infinite}
+@keyframes sheen{0%,60%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.ph-in{position:relative;z-index:1;display:grid;gap:6px;justify-items:center;padding:16px}
+.ph-in .ic{width:30px;height:30px;color:var(--accent-ink)}
+.ph-in b{font-family:var(--display);font-weight:400;font-size:1.5rem;color:var(--fg);line-height:1.1}
+.ph-in small{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+.arch{border-radius:999px 999px 22px 22px}
+.fcard{position:absolute;display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:11px 15px;box-shadow:var(--shadow);animation:float 6s ease-in-out infinite;translate:calc(var(--mx,0)*14px) calc(var(--my,0)*14px);transition:translate .4s var(--ease);z-index:2}
+.fcard b{display:block;font-family:var(--display);font-weight:400;font-size:1.55rem;line-height:1}
+.fcard small{font-size:.75rem;color:var(--muted);line-height:1.3;display:block}
+.fcard.a{left:0;top:18%}
+.fcard.b{right:0;top:46%;animation-delay:-2s}
+.fcard.c{left:4%;bottom:6%;animation-delay:-4s}
+.fcard .ic{color:var(--accent-ink);width:22px;height:22px}
+.avs{display:flex}
+.avs i{width:26px;height:26px;border-radius:50%;border:2px solid var(--surface);margin-left:-8px;background:linear-gradient(135deg,var(--accent-fill),var(--surface-2))}
+.avs i:first-child{margin-left:0}
+.avs i:nth-child(2){background:linear-gradient(135deg,var(--surface-2),var(--accent-fill))}
+.avs i:nth-child(3){background:var(--band-bg)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* marquee */
+.logos{border-block:1px solid var(--line);padding-block:22px;overflow:hidden;background:var(--surface)}
+.logos .lab{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:16px}
+.track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.logos:hover .track{animation-play-state:paused}
+.track span{padding-inline:clamp(24px,4vw,56px);font-size:1.45rem;color:var(--muted);opacity:.8;white-space:nowrap;transition:color .3s,opacity .3s}
+.track span:hover{color:var(--accent-ink);opacity:1}
+.track span:nth-child(4n+1){font-family:var(--display);font-style:italic}
+.track span:nth-child(4n+2){font-weight:700;letter-spacing:.14em;font-size:1rem;text-transform:uppercase}
+.track span:nth-child(4n+3){font-family:var(--display)}
+.track span:nth-child(4n){font-weight:500;letter-spacing:-.02em}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* pain */
+.pain-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.pain-grid>*{min-width:0}
+.pain-side{position:sticky;top:104px;display:grid;gap:22px}
+.tally{display:flex;align-items:center;gap:14px;font-size:.9rem;color:var(--muted);min-height:3em}
+.tally b{font-family:var(--display);font-weight:400;font-size:2.4rem;color:var(--accent-ink);line-height:1}
+.pains{display:grid;gap:14px}
+.pain{display:flex;gap:18px;align-items:center;justify-content:space-between;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px 22px 22px 22px;padding:22px 24px;transition:transform .35s var(--ease),border-color .3s,background .3s}
+.pain:hover{transform:translateX(6px);border-color:var(--accent-ink)}
+.pain q{font-family:var(--display);font-size:clamp(1.25rem,2.3vw,1.6rem);line-height:1.2;quotes:"“" "”"}
+.pain .tick{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;flex:none;transition:all .3s var(--ease);color:transparent}
+.pain[aria-pressed="true"]{background:color-mix(in srgb,var(--accent-fill) 16%,var(--surface));border-color:var(--accent-ink)}
+.pain[aria-pressed="true"] .tick{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent);transform:scale(1.08)}
+
+/* benefits */
+.bens{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.ben{background:var(--bg);padding:clamp(24px,3vw,38px);display:grid;gap:14px;align-content:start;position:relative;transition:background .4s}
+.ben:hover{background:var(--surface)}
+.ben::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--accent-fill);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.ben:hover::after{transform:scaleX(1)}
+.ben .ic{width:30px;height:30px;color:var(--accent-ink);transition:transform .5s var(--ease)}
+.ben:hover .ic{transform:translateY(-4px) rotate(-6deg)}
+.ben small{font-size:.7rem;font-weight:600;letter-spacing:.17em;color:var(--accent-ink)}
+.ben h3{font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.12}
+.ben p{color:var(--muted);font-size:.95rem}
+
+/* product */
+.prod{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,5vw,80px);align-items:center}
+.prod>*{min-width:0}
+.cover{aspect-ratio:4/4.4;border-radius:28px;position:relative}
+.cover .ph-img{position:absolute;inset:0;border-radius:28px}
+.seal{position:absolute;right:-8px;bottom:22px;z-index:3;width:112px;height:112px;border-radius:50%;background:var(--accent-fill);color:var(--on-accent);display:grid;place-items:center;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;line-height:1.25;box-shadow:var(--shadow);animation:wob 8s ease-in-out infinite}
+.seal b{display:block;font-family:var(--display);font-weight:400;font-size:2rem;letter-spacing:0;line-height:1}
+@keyframes wob{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(6deg)}}
+.prod-copy{display:grid;gap:22px}
+.callout{border-left:2px solid var(--accent-ink);padding:6px 0 6px 22px;display:grid;gap:6px}
+.callout h3{font-family:var(--display);font-weight:400;font-size:1.5rem}
+.callout p{color:var(--muted)}
+
+/* accordion */
+.acc{display:grid;border-top:1px solid var(--line)}
+.acc-item{border-bottom:1px solid var(--line)}
+.acc-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:none;border:0;text-align:left;padding:22px 2px;font-size:1.08rem;font-weight:600}
+.acc-q small{display:block;font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:3px}
+.acc-q .ic{transition:transform .4s var(--ease);color:var(--accent-ink)}
+.acc-item.open .acc-q .ic{transform:rotate(45deg)}
+.acc-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.acc-a>div{overflow:hidden;min-height:0}
+.acc-item.open .acc-a{grid-template-rows:1fr}
+.acc-a p,.acc-a li{color:var(--muted);padding-bottom:22px;max-width:62ch}
+.acc-a ul{display:grid;gap:8px;padding-bottom:22px}
+.acc-a li{padding:0 0 0 24px;position:relative}
+.acc-a li::before{content:"";position:absolute;left:2px;top:.7em;width:10px;height:1px;background:var(--accent-ink)}
+.prog-wrap{margin-top:clamp(40px,6vw,72px)}
+
+/* deliverables */
+.give{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,56px);align-items:start}
+.give>*{min-width:0}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;display:grid;gap:12px;align-content:start;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--accent-ink) 55%,var(--line))}
+.card .ic{width:28px;height:28px;color:var(--accent-ink)}
+.card h3{font-size:1.05rem;font-weight:600;line-height:1.3}
+.card p{color:var(--muted);font-size:.9rem}
+.receipt{position:sticky;top:104px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:30px;box-shadow:var(--shadow)}
+.receipt h3{font-family:var(--display);font-weight:400;font-size:1.7rem;margin-bottom:18px}
+.stack{display:grid;gap:12px;font-size:.92rem}
+.stack li{display:flex;align-items:baseline;gap:10px}
+.stack i{flex:1;border-bottom:1px dotted var(--muted);opacity:.6;transform:translateY(-4px);min-width:12px}
+.stack b{font-weight:600;font-variant-numeric:tabular-nums}
+.stack s{color:var(--muted)}
+.sum{margin-top:22px;padding-top:20px;border-top:1px solid var(--fg);display:grid;gap:4px}
+.sum .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.9rem;color:var(--muted)}
+.sum .big{font-family:var(--display);font-size:3.6rem;line-height:1;color:var(--fg)}
+.sum .big small{font-size:.9rem;font-family:var(--body);color:var(--accent-ink);font-weight:600;margin-left:8px;letter-spacing:.04em}
+.receipt .btn{width:100%;margin-top:22px}
+
+/* bonus */
+.bonus{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.bn{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;transition:transform .4s var(--ease),box-shadow .4s}
+.bn:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.bn>*{min-width:0}
+.bn .ph-img{aspect-ratio:1;border-radius:16px}
+.bn .ph-in b{font-size:1.1rem}
+.tag{display:inline-flex;align-items:center;gap:7px;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:8px}
+.bn h3{font-family:var(--display);font-weight:400;font-size:1.5rem;line-height:1.12;margin-bottom:8px}
+.bn p{font-size:.9rem;color:var(--muted)}
+
+/* clinic bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
+.bento>*{min-width:0}
+.bento .ph-img{border-radius:22px}
+.b-main{grid-column:span 4;grid-row:span 2;min-height:340px}
+.b-s{grid-column:span 2}
+.info{grid-column:span 3;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px;display:grid;gap:14px;align-content:center}
+.info div{display:flex;gap:14px;align-items:flex-start}
+.info .ic{color:var(--accent-ink);margin-top:3px}
+.info b{display:block;font-weight:600}
+.info span{color:var(--muted);font-size:.92rem}
+.stats{grid-column:span 3;background:var(--band-bg);color:var(--band-fg);border-radius:22px;padding:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-content:center;text-align:left}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(2rem,4vw,2.9rem);line-height:1;color:var(--accent-fill);font-variant-numeric:tabular-nums}
+.stat small{font-size:.78rem;color:var(--band-muted);line-height:1.3;display:block;margin-top:6px}
+
+/* story */
+.story{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,88px);align-items:center}
+.story>*{min-width:0}
+.portrait{position:relative;max-width:440px;margin-inline:auto;width:100%}
+.portrait .arch{aspect-ratio:4/5}
+.portrait::before{content:"";position:absolute;inset:-16px 16px 16px -16px;border:1px solid var(--accent-ink);border-radius:999px 999px 22px 22px;opacity:.55;z-index:-1}
+.story-copy{display:grid;gap:22px}
+.story-copy p{color:var(--muted)}
+.sig{font-family:var(--display);font-style:italic;font-size:2.2rem;color:var(--fg);line-height:1}
+.tl{display:grid;gap:0;margin-top:6px}
+.tl li{display:grid;grid-template-columns:70px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line);align-items:baseline}
+.tl b{font-family:var(--display);font-weight:400;font-size:1.5rem;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.tl span{color:var(--muted);font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-size:.82rem;font-weight:500}
+
+/* before after */
+.res{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,64px);align-items:center}
+.res>*{min-width:0}
+.ba{position:relative;aspect-ratio:4/3.1;border-radius:26px;overflow:hidden;border:1px solid var(--line);user-select:none;--p:50%}
+.ba-layer{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px}
+.ba-layer span{position:absolute;top:18px;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.ba-layer p{font-family:var(--display);font-size:1.7rem;color:var(--fg)}
+.ba-before{background:linear-gradient(160deg,var(--surface-2),color-mix(in srgb,var(--surface-2) 70%,var(--muted)))}
+.ba-before span{left:18px}
+.ba-after{background:radial-gradient(circle at 70% 25%,color-mix(in srgb,var(--accent-fill) 45%,transparent),transparent 60%),linear-gradient(160deg,var(--surface),color-mix(in srgb,var(--accent-fill) 18%,var(--surface)));clip-path:inset(0 0 0 var(--p))}
+.ba-after span{right:18px;background:var(--accent-fill);color:var(--on-accent);border-color:transparent}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:var(--surface);box-shadow:0 0 0 1px var(--line);pointer-events:none;transform:translateX(-1px)}
+.ba-handle i{position:absolute;top:50%;left:50%;width:46px;height:46px;border-radius:50%;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);transform:translate(-50%,-50%);display:grid;place-items:center;color:var(--accent-ink)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y}
+.ba:focus-within{outline:2px solid var(--accent-ink);outline-offset:3px}
+.res-copy{display:grid;gap:20px}
+.hint{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted)}
+
+/* testimonials */
+.tgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px;margin-top:clamp(40px,6vw,64px)}
+.tgrid>*{min-width:0}
+.tc{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;display:grid;gap:18px;align-content:space-between}
+.tc.f{background:var(--band-bg);color:var(--band-fg);border-radius:6px 28px 28px 28px}
+.tc.f .who small,.tc.f .ex{color:var(--band-muted)}
+.stars{display:flex;gap:3px;color:var(--accent-fill)}
+.stars .ic{width:16px;height:16px;fill:currentColor;stroke:none}
+.tc blockquote{margin:0;font-family:var(--display);font-size:1.3rem;line-height:1.28}
+.tc.f blockquote{font-size:clamp(1.5rem,2.6vw,2rem)}
+.who{display:flex;align-items:center;gap:12px;font-size:.9rem}
+.who i{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent-fill),var(--surface-2));flex:none}
+.who b{display:block;font-weight:600}
+.who small{color:var(--muted)}
+.ex{font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+
+/* dark bands */
+.band{background:var(--band-bg);color:var(--band-fg);--fg:var(--band-fg);--muted:var(--band-muted);--line:var(--band-line);--accent-ink:var(--accent-fill);position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;right:-220px;top:-260px;background:radial-gradient(circle,color-mix(in srgb,var(--accent-fill) 22%,transparent),transparent 65%);pointer-events:none}
+.band .wrap{position:relative}
+.center{text-align:center;justify-items:center}
+.center .lead{margin-inline:auto}
+.center .eyebrow::after{content:"";width:28px;height:1px;background:currentColor}
+
+.meter{max-width:560px;width:100%;display:grid;gap:10px;margin-inline:auto;margin-bottom:clamp(36px,5vw,56px)}
+.meter-top{display:flex;justify-content:space-between;font-size:.85rem;color:var(--band-muted)}
+.meter-top b{color:var(--band-fg);font-weight:600}
+.bar{height:8px;border-radius:99px;background:var(--band-line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,color-mix(in srgb,var(--accent-fill) 60%,transparent),var(--accent-fill));transition:width 1.8s var(--ease)}
+
+.cd{display:flex;gap:10px;justify-content:center}
+.cd div{min-width:68px;border:1px solid var(--band-line);border-radius:14px;padding:12px 8px;text-align:center;background:color-mix(in srgb,var(--band-fg) 5%,transparent)}
+.cd b{display:block;font-family:var(--display);font-weight:400;font-size:2.1rem;line-height:1;font-variant-numeric:tabular-nums;color:var(--band-fg)}
+.cd small{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--band-muted)}
+
+.lots{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:16px;align-items:stretch}
+.lots>*{min-width:0}
+.lot{border:1px solid var(--band-line);border-radius:22px;padding:30px 26px;display:grid;gap:12px;align-content:start;background:color-mix(in srgb,var(--band-fg) 4%,transparent);text-align:left}
+.lot .nm{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--band-muted)}
+.lot .pr{font-family:var(--display);font-size:3.2rem;line-height:1}
+.lot .st{font-size:.85rem;color:var(--band-muted)}
+.lot.off{opacity:.55}
+.lot.on{border-color:var(--accent-fill);background:color-mix(in srgb,var(--accent-fill) 11%,transparent);padding:38px 30px;box-shadow:0 30px 70px -34px color-mix(in srgb,var(--accent-fill) 70%,transparent)}
+.lot.on .pr{font-size:4.6rem;color:var(--accent-fill)}
+.lot.on .nm{color:var(--accent-fill)}
+.lot ul{display:grid;gap:9px;margin:6px 0 10px;font-size:.9rem}
+.lot li{display:flex;gap:10px;align-items:flex-start}
+.lot li .ic{color:var(--accent-fill);margin-top:3px;width:1.1em;height:1.1em}
+.lot .btn{width:100%}
+.anchor{font-size:.9rem;color:var(--band-muted)}
+.anchor s{color:var(--band-fg)}
+
+.guar{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:26px;padding:clamp(24px,4vw,42px)}
+.guar .ic{width:64px;height:64px;color:var(--accent-ink);stroke-width:1.2}
+.guar h3{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:6px;line-height:1.1}
+.guar p{color:var(--muted);max-width:64ch}
+
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,80px);align-items:start}
+.faq-grid>*{min-width:0}
+
+.todo{border:1.5px dashed var(--accent-ink);border-radius:26px;padding:clamp(26px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,56px);align-items:center;background:color-mix(in srgb,var(--accent-fill) 7%,transparent)}
+.todo>*{min-width:0}
+.todo ul{display:grid;gap:12px}
+.todo li{display:flex;gap:12px;align-items:center;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;font-weight:500;font-size:.95rem;transition:transform .3s var(--ease)}
+.todo li:hover{transform:translateX(6px)}
+.todo li .ic{color:var(--accent-ink)}
+.todo .copy{display:grid;gap:16px}
+.todo .copy p{color:var(--muted)}
+
+.final{padding-block:clamp(72px,10vw,130px);text-align:center}
+.final h2{font-size:clamp(2.3rem,5.4vw,4.4rem);max-width:18ch;margin-inline:auto}
+.final .stack-c{display:grid;gap:30px;justify-items:center}
+.wa{display:inline-flex;gap:10px;align-items:center;color:var(--band-muted);font-size:.95rem}
+.wa b{color:var(--band-fg);font-weight:600;user-select:all}
+footer{background:var(--band-bg);color:var(--band-muted);border-top:1px solid var(--band-line);padding-block:30px;font-size:.82rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;align-items:center}
+footer nav{display:flex;gap:20px;flex-wrap:wrap}
+
+/* dock (mobile CTA) */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;align-items:center;justify-content:space-between;gap:14px;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s var(--ease)}
+.dock.show{transform:none}
+.dock div{line-height:1.2;min-width:0}
+.dock small{font-size:.72rem;color:var(--muted);display:block}
+.dock b{font-family:var(--display);font-weight:400;font-size:1.6rem}
+.dock .btn{padding:13px 22px;font-size:.92rem;flex:none}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px max(16px,env(safe-area-inset-right,0px)) 20px max(16px,env(safe-area-inset-left,0px));background:rgba(6,14,12,.66);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.modal:not([hidden]){display:grid;animation:fade .3s both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.sheet{width:100%;max-width:480px;max-height:100%;overflow:auto;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:26px;padding:clamp(24px,4vw,38px);position:relative;animation:pop .45s var(--ease) both}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+.sheet h3{font-family:var(--display);font-weight:400;font-size:2rem;line-height:1.05;margin-bottom:8px}
+.sheet>p{color:var(--muted);font-size:.92rem;margin-bottom:22px}
+.x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;display:grid;place-items:center}
+.x .ic{transform:rotate(45deg)}
+.fld{display:grid;gap:6px;margin-bottom:14px}
+.fld label{font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--muted)}
+.fld input,.fld select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 14px;width:100%;transition:border-color .25s,box-shadow .25s}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--accent-ink);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent-fill) 30%,transparent)}
+.sheet .btn{width:100%;margin-top:6px}
+.fine{font-size:.75rem;color:var(--muted);margin-top:14px;display:flex;gap:8px;align-items:center}
+.ok{display:grid;gap:12px;text-align:center;justify-items:center;padding-block:10px}
+.ok .ic{width:54px;height:54px;color:var(--accent-ink)}
+
+/* reveal */
+.js .reveal{opacity:.2;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* responsive */
+@media (max-width:1000px){
+  .hero-grid,.pain-grid,.prod,.give,.story,.res,.faq-grid,.todo{grid-template-columns:1fr}
+  .pain-side,.receipt{position:static}
+  .bens{grid-template-columns:repeat(2,1fr)}
+  .tgrid{grid-template-columns:1fr 1fr}
+  .tgrid .f{grid-column:span 2}
+  .lots{grid-template-columns:1fr}
+  .lot.on{order:-1}
+  .bonus{grid-template-columns:1fr}
+  .top nav{display:none}
+  .stage{max-width:440px}
+  .cover{max-width:520px;margin-inline:auto;width:100%}
+  .seal{right:8px}
+}
+@media (max-width:720px){
+  .dock{display:flex}
+  footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  .bens,.cards,.tgrid{grid-template-columns:1fr}
+  .tgrid .f{grid-column:auto}
+  .bento{grid-template-columns:1fr 1fr}
+  .b-main{grid-column:span 2;grid-row:auto;min-height:260px}
+  .b-s{grid-column:span 1;min-height:150px}
+  .info,.stats{grid-column:span 2}
+  .bn{grid-template-columns:96px 1fr;gap:16px;padding:16px}
+  .bn .ph-in small,.bn .ph-in .ic{display:none}
+  .guar{grid-template-columns:1fr}
+  .cd div{min-width:60px}
+  .cd b{font-size:1.8rem}
+  .fcard{padding:9px 12px}
+  .fcard b{font-size:1.3rem}
+  .fcard.a{top:12%}
+  .top .brand span.nm{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tl li{grid-template-columns:58px 1fr}
+  .stats{grid-template-columns:1fr 1fr 1fr;padding:20px}
+  .btn-lg{padding:17px 26px}
+}
+@media (max-width:420px){
+  .fcard.c{display:none}
+  .cta-row .btn{width:100%}
+  .cd{gap:6px}
+  .cd div{min-width:0;flex:1}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
+  .track{flex-wrap:wrap;width:auto;justify-content:center}
+  .track span:nth-child(n+7){display:none}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3Z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-3 5 3-1.5-7"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5Z"/><path d="M8 7h7"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.2-4.6A8 8 0 1 1 21 12Z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v8h14v-8"/><path d="M12 8c-2-4-6-3-5 0 .5 1.5 3 1 5 0Zm0 0c2-4 6-3 5 0-.5 1.5-3 1-5 0Z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.8 0 4.5 1.8 4.5 4.5"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3v11H4V8Z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M8 7 4 12l4 5M16 7l4 5-4 5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></symbol>
+</svg>
+
+<div class="note">
+  <div class="wrap">
+    <span><b>Vista previa de diseño.</b> Todo el contenido es de ejemplo y se reemplaza con tu información.</span>
+    <span>Lo marcado con <span class="ph">subrayado dorado</span> es lo primero que personalizamos.</span>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Inicio">
+      <span class="mono">T</span><span class="nm ph">Tu Marca</span>
+    </a>
+    <nav aria-label="Principal">
+      <a href="#programa">Programa</a>
+      <a href="#historia">Tu historia</a>
+      <a href="#clinica">Tu clínica</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#precio">Precio</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <button class="btn btn-gold" data-open-modal>Reservar cupo</button>
+  </div>
+  <div class="progress"><i id="prog"></i></div>
+</header>
+
+<main id="inicio">
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill rise" style="--d:.05s"><span class="dot"></span><span><b class="ph">74%</b> de los cupos ocupados · Primer lote</span></span>
+      <h1 class="rise" style="--d:.15s">Convierte tu <em>experiencia</em> en resultados que tus pacientes recomiendan</h1>
+      <p class="lead rise" style="--d:.28s">Un taller online en vivo para profesionales que quieren más seguridad, mejores resultados y un servicio que se distinga del resto. Todo lo que necesitas, en <span class="ph">2 días</span>.</p>
+      <div class="cta-row rise" style="--d:.4s">
+        <button class="btn btn-gold btn-lg" data-open-modal>Reservar mi cupo <svg class="ic"><use href="#i-arrow"/></svg></button>
+        <a class="btn btn-line btn-lg" href="#programa">Ver el programa</a>
+      </div>
+      <ul class="trust rise" style="--d:.52s">
+        <li><svg class="ic"><use href="#i-video"/></svg>Online y en vivo</li>
+        <li><svg class="ic"><use href="#i-clock"/></svg>1 año de acceso</li>
+        <li><svg class="ic"><use href="#i-award"/></svg>Certificado digital</li>
+      </ul>
+    </div>
+
+    <div class="stage rise" style="--d:.3s" id="stage">
+      <div class="halo"></div>
+      <div class="halo two"></div>
+      <div class="arch ph-img">
+        <div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b>Tu foto aquí</b><small>Retrato profesional · 4:5</small></div>
+      </div>
+      <div class="fcard a"><div class="avs"><i></i><i></i><i></i></div><div><b class="ph">+2,000</b><small>alumnos formados</small></div></div>
+      <div class="fcard b"><svg class="ic"><use href="#i-star"/></svg><div><b class="ph">4.9</b><small>valoración promedio</small></div></div>
+      <div class="fcard c"><svg class="ic"><use href="#i-clock"/></svg><div><b class="ph">14 nov</b><small>inicia el taller</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos" aria-label="Medios y aliados">
+  <p class="lab">Como te vieron en · <span class="ph">tus logos aquí</span></p>
+  <div class="track" aria-hidden="true">
+    <span>Tu Medio</span><span>Aliado Uno</span><span>Tu Certificación</span><span>Congreso</span><span>Revista Líder</span><span>Tu Sociedad</span><span>Tu Medio</span><span>Aliado Uno</span><span>Tu Certificación</span><span>Congreso</span><span>Revista Líder</span><span>Tu Sociedad</span>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section class="sec" id="dolor">
+  <div class="wrap pain-grid">
+    <div class="pain-side reveal">
+      <span class="eyebrow">Te suena familiar</span>
+      <h2>Si trabajas en <em>tu sector</em>, probablemente ya pasaste por esto</h2>
+      <p class="lead">Marca las que te hayan pasado. Son más comunes de lo que imaginas, y tienen solución.</p>
+      <div class="tally" aria-live="polite"><b id="tn">0</b><span id="tt">de 4 marcadas. Toca las que te representen.</span></div>
+    </div>
+    <div class="pains">
+      <button class="pain reveal" aria-pressed="false" style="--d:.05s"><q>Tengo miedo de prometer un resultado y no cumplirlo.</q><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span></button>
+      <button class="pain reveal" aria-pressed="false" style="--d:.12s"><q>Por más que estudio, nunca siento que estoy lista.</q><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span></button>
+      <button class="pain reveal" aria-pressed="false" style="--d:.19s"><q>Siento que mi trabajo no evoluciona y me comparo con todos.</q><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span></button>
+      <button class="pain reveal" aria-pressed="false" style="--d:.26s"><q>¿Y si aparece un problema y no sé cómo resolverlo?</q><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">La transformación</span>
+      <h2>Con <span class="ph">Nombre de tu curso</span> vas a <em>lograr</em></h2>
+    </div>
+    <div class="bens">
+      <article class="ben reveal"><svg class="ic"><use href="#i-shield"/></svg><small>CONFIANZA</small><h3>Seguridad para ofrecer y ejecutar tu servicio</h3><p>Explica en una línea el cambio concreto que logra tu cliente ideal.</p></article>
+      <article class="ben reveal" style="--d:.08s"><svg class="ic"><use href="#i-target"/></svg><small>EFICIENCIA</small><h3>Resultados completos con menos tiempo y recursos</h3><p>Resume cómo tu método simplifica lo que antes era complicado.</p></article>
+      <article class="ben reveal" style="--d:.16s"><svg class="ic"><use href="#i-layers"/></svg><small>PREPARACIÓN</small><h3>Listo para los casos que hoy te generan dudas</h3><p>Nombra la situación difícil que tu curso ayuda a resolver.</p></article>
+      <article class="ben reveal"><svg class="ic"><use href="#i-star"/></svg><small>DIFERENCIACIÓN</small><h3>Destaca frente a quienes aplican fórmulas genéricas</h3><p>Cuenta qué te hace distinto y por qué importa a tu mercado.</p></article>
+      <article class="ben reveal" style="--d:.08s"><svg class="ic"><use href="#i-trend"/></svg><small>RENTABILIDAD</small><h3>Sube el valor promedio de cada atención</h3><p>Conecta tu enseñanza con un resultado en ingresos medible.</p></article>
+      <article class="ben reveal" style="--d:.16s"><svg class="ic"><use href="#i-heart"/></svg><small>ORGULLO</small><h3>Siente orgullo de tu trabajo clínico</h3><p>Cierra con el beneficio emocional que tu alumno busca de verdad.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT + PROGRAM -->
+<section class="sec" id="programa" style="padding-top:0">
+  <div class="wrap">
+    <div class="prod">
+      <div class="cover reveal">
+        <div class="ph-img"><div class="ph-in"><svg class="ic"><use href="#i-layers"/></svg><b>Tu producto</b><small>Portada o mockup del curso</small></div></div>
+        <div class="seal"><div><b class="ph">2</b>días en<br>vivo</div></div>
+      </div>
+      <div class="prod-copy reveal" style="--d:.1s">
+        <span class="eyebrow">Tu producto</span>
+        <h2>¿Qué es <em>Nombre de tu curso</em>?</h2>
+        <p class="lead">Aprende las técnicas más actualizadas de tu especialidad y descubre cómo los pequeños detalles marcan toda la diferencia. Recibes todo el contenido, más una inmersión en vivo para resolver tus dudas con casos reales.</p>
+        <div class="callout">
+          <h3>Por qué <span class="ph">2 días</span> son suficientes</h3>
+          <p>Aquí explicas tu método en pocas líneas: qué se aprende primero, cómo se practica y por qué ese orden acelera el resultado.</p>
+        </div>
+        <div><button class="btn btn-gold" data-open-modal>Quiero mi lugar <svg class="ic"><use href="#i-arrow"/></svg></button></div>
+      </div>
+    </div>
+
+    <div class="prog-wrap reveal">
+      <div class="head" style="margin-bottom:28px"><span class="eyebrow">El programa</span><h2>Qué vas a <em>aprender</em>, paso a paso</h2></div>
+      <div class="acc" id="prog-acc">
+        <div class="acc-item open"><h3><button class="acc-q" aria-expanded="true" aria-controls="p1" id="pq1"><span><small>Día 1 · Mañana</small>Fundamentos y método</span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
+          <div class="acc-a" id="p1" role="region" aria-labelledby="pq1"><div><ul><li>Qué cambia en tu forma de evaluar cada caso</li><li>El orden de prioridades de tu método</li><li>Errores frecuentes y cómo evitarlos</li></ul></div></div></div>
+        <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="p2" id="pq2"><span><small>Día 1 · Tarde</small>Técnica aplicada</span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
+          <div class="acc-a" id="p2" role="region" aria-labelledby="pq2"><div><ul><li>Demostración paso a paso en vivo</li><li>Cómo adaptar la técnica a cada perfil</li><li>Material de apoyo para practicar</li></ul></div></div></div>
+        <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="p3" id="pq3"><span><small>Día 2 · Mañana</small>Casos reales y complicaciones</span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
+          <div class="acc-a" id="p3" role="region" aria-labelledby="pq3"><div><ul><li>Análisis de casos clínicos en vivo</li><li>Protocolo ante situaciones inesperadas</li><li>Preguntas y respuestas con el equipo</li></ul></div></div></div>
+        <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="p4" id="pq4"><span><small>Día 2 · Tarde</small>Tu plan de implementación</span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
+          <div class="acc-a" id="p4" role="region" aria-labelledby="pq4"><div><p>Cómo llevar lo aprendido a tu consulta desde la semana siguiente: comunicación con el paciente, presentación de tu servicio y seguimiento.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Lo que incluye</span><h2>Todo lo que <em>recibes</em> al inscribirte</h2></div>
+    <div class="give">
+      <div class="cards">
+        <article class="card reveal"><svg class="ic"><use href="#i-video"/></svg><h3>2 días de taller en vivo</h3><p>Sesiones online completas con tu instructor, con espacio para preguntas.</p></article>
+        <article class="card reveal" style="--d:.07s"><svg class="ic"><use href="#i-target"/></svg><h3>Técnicas y método exclusivos</h3><p>Una metodología actualizada y validada en tu propia práctica.</p></article>
+        <article class="card reveal" style="--d:.14s"><svg class="ic"><use href="#i-award"/></svg><h3>Certificado digital</h3><p>Reconocimiento oficial para sumar a tu currículum.</p></article>
+        <article class="card reveal"><svg class="ic"><use href="#i-book"/></svg><h3>Área de miembros por 1 año</h3><p>Todas las clases para volver a verlas cuando quieras.</p></article>
+        <article class="card reveal" style="--d:.07s"><svg class="ic"><use href="#i-chat"/></svg><h3>Comunidad privada</h3><p>Avisos, materiales e intercambio con otros alumnos.</p></article>
+        <article class="card reveal" style="--d:.14s"><svg class="ic"><use href="#i-layers"/></svg><h3>Manual completo</h3><p>Material de consulta para repasar después del evento.</p></article>
+      </div>
+      <aside class="receipt reveal" style="--d:.1s" aria-label="Valor total">
+        <h3>Lo que vale todo esto</h3>
+        <ul class="stack">
+          <li><span>Taller en vivo (2 días)</span><i></i><b class="ph">$249</b></li>
+          <li><span>Clases grabadas · 1 año</span><i></i><b class="ph">$149</b></li>
+          <li><span>Manual completo</span><i></i><b class="ph">$59</b></li>
+          <li><span>Comunidad privada</span><i></i><b class="ph">$39</b></li>
+          <li><span>Bono 1 · Kit de documentos</span><i></i><b class="ph">$79</b></li>
+          <li><span>Bono 2 · Clase magistral</span><i></i><b class="ph">$99</b></li>
+        </ul>
+        <div class="sum">
+          <div class="row"><span>Valor total</span><s class="ph">$674</s></div>
+          <div class="row"><span>Tu inversión hoy</span><span>Pago único</span></div>
+          <div class="big"><span class="ph">$97</span><small>USD</small></div>
+        </div>
+        <button class="btn btn-gold" data-open-modal>Quiero entrar ahora <svg class="ic"><use href="#i-arrow"/></svg></button>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Bonos exclusivos</span><h2>Y además, <em>dos regalos</em> solo para esta edición</h2></div>
+    <div class="bonus">
+      <article class="bn reveal"><div class="ph-img"><div class="ph-in"><svg class="ic"><use href="#i-gift"/></svg><b>Tu bono</b><small>Imagen</small></div></div>
+        <div><span class="tag"><svg class="ic"><use href="#i-star"/></svg>Bono 1</span><h3>Kit de documentos para una clínica de alto nivel</h3><p>Fichas, consentimientos y formularios listos para implementar en minutos y transmitir más profesionalismo.</p></div></article>
+      <article class="bn reveal" style="--d:.1s"><div class="ph-img"><div class="ph-in"><svg class="ic"><use href="#i-gift"/></svg><b>Tu bono</b><small>Imagen</small></div></div>
+        <div><span class="tag"><svg class="ic"><use href="#i-star"/></svg>Bono 2</span><h3>Clase magistral que antes solo ofrecías presencial</h3><p>Contenido exclusivo de tus cursos de mayor valor, disponible ahora para quienes se inscriban en el primer lote.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- CLINIC -->
+<section class="sec" id="clinica" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Tu clínica</span><h2>El lugar donde ocurre <em>todo</em></h2><p class="lead">Muestra tu espacio, tu equipo y los números que respaldan tu trabajo. La confianza se construye con detalles reales.</p></div>
+    <div class="bento">
+      <div class="ph-img b-main reveal"><div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b>Tu clínica</b><small>Foto panorámica · 16:10</small></div></div>
+      <div class="ph-img b-s reveal" style="--d:.08s"><div class="ph-in"><svg class="ic"><use href="#i-users"/></svg><b>Tu equipo</b><small>Foto</small></div></div>
+      <div class="ph-img b-s reveal" style="--d:.16s"><div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b>Tu consultorio</b><small>Foto</small></div></div>
+      <div class="info reveal">
+        <div><svg class="ic"><use href="#i-pin"/></svg><p><b class="ph">Dirección de tu clínica</b><span>Colonia, ciudad y país</span></p></div>
+        <div><svg class="ic"><use href="#i-clock"/></svg><p><b class="ph">Lunes a sábado</b><span>9:00 a 19:00 h</span></p></div>
+      </div>
+      <div class="stats reveal" style="--d:.1s">
+        <div class="stat"><b data-count="10" data-prefix="+">+10</b><small>años de experiencia</small></div>
+        <div class="stat"><b data-count="5000" data-prefix="+">+5,000</b><small>pacientes atendidos</small></div>
+        <div class="stat"><b data-count="2000" data-prefix="+">+2,000</b><small>alumnos formados</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="sec" id="historia" style="padding-top:0">
+  <div class="wrap story">
+    <div class="portrait reveal">
+      <div class="arch ph-img"><div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b>Tu retrato</b><small>Foto de pie o busto · 4:5</small></div></div>
+    </div>
+    <div class="story-copy reveal" style="--d:.1s">
+      <span class="eyebrow">Tu historia</span>
+      <h2>Mucho gusto, soy <em class="ph" style="font-style:italic">Tu Nombre</em></h2>
+      <p>Aquí cuentas por qué empezaste, qué problema viste en tu sector y cómo llegaste al método que hoy enseñas. Una historia breve, humana y concreta convence más que una lista de títulos.</p>
+      <p>Cierra con la razón por la que ahora quieres compartir lo que aprendiste y qué esperas que logre cada alumno.</p>
+      <ul class="tl">
+        <li><b class="ph">2012</b><span>Inicio de tu carrera y primer gran aprendizaje</span></li>
+        <li><b class="ph">2016</b><span>Especialización y primeros casos de alto impacto</span></li>
+        <li><b class="ph">2020</b><span>Abres tu clínica y creas tu método propio</span></li>
+        <li><b class="ph">2024</b><span>Lanzas tu primer curso y formas a tu primera generación</span></li>
+      </ul>
+      <div class="chips"><span>Tu título</span><span>Tu posgrado</span><span>Tu libro o publicación</span><span>Tu certificación</span></div>
+      <p class="sig">Tu Nombre</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="sec" id="resultados" style="padding-top:0">
+  <div class="wrap">
+    <div class="res">
+      <div class="ba reveal" id="ba" role="group" aria-label="Comparador antes y después">
+        <div class="ba-layer ba-before"><span>Antes</span><p>Tu foto de antes</p></div>
+        <div class="ba-layer ba-after"><span>Después</span><p>Tu foto de después</p></div>
+        <div class="ba-handle"><i><svg class="ic"><use href="#i-swap"/></svg></i></div>
+        <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Deslizar para comparar antes y después">
+      </div>
+      <div class="res-copy reveal" style="--d:.1s">
+        <span class="eyebrow">Resultados</span>
+        <h2>Los resultados <em>hablan</em> mejor que tú</h2>
+        <p class="lead">Un comparador interactivo con tus casos reales. Tus visitantes lo deslizan, lo ven y entienden tu trabajo en segundos.</p>
+        <p class="hint"><svg class="ic"><use href="#i-swap"/></svg>Desliza la imagen para comparar</p>
+      </div>
+    </div>
+
+    <div class="tgrid">
+      <figure class="tc f reveal" style="margin:0"><div><span class="ex">Testimonio de ejemplo</span></div>
+        <div class="stars" aria-label="5 estrellas"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
+        <blockquote>Aquí va el testimonio real de un alumno: lo que le costaba antes, lo que cambió y el resultado concreto que logró.</blockquote>
+        <figcaption class="who"><i></i><span><b class="ph">Nombre del alumno</b><small>Profesión · Ciudad</small></span></figcaption></figure>
+      <figure class="tc reveal" style="margin:0;--d:.08s"><span class="ex">Testimonio de ejemplo</span>
+        <blockquote>Un mensaje corto de otro alumno, con un resultado medible o una frase memorable.</blockquote>
+        <figcaption class="who"><i></i><span><b class="ph">Nombre del alumno</b><small>Profesión · Ciudad</small></span></figcaption></figure>
+      <figure class="tc reveal" style="margin:0;--d:.16s"><span class="ex">Testimonio de ejemplo</span>
+        <blockquote>Otro testimonio breve que responda a una duda frecuente de quien aún no se decide.</blockquote>
+        <figcaption class="who"><i></i><span><b class="ph">Nombre del alumno</b><small>Profesión · Ciudad</small></span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec band" id="precio">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="eyebrow">Asegura tu cupo</span>
+      <h2>100% online y <em>cupo cerrado</em></h2>
+      <p class="lead">El precio sube con cada lote. Entre más temprano te inscribes, menos pagas.</p>
+    </div>
+    <div class="meter reveal">
+      <div class="meter-top"><span>Primer lote</span><span><b class="ph" id="pct">74%</b> de los cupos ocupados</span></div>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="74" aria-label="Cupos ocupados"><i id="barfill" data-w="74"></i></div>
+    </div>
+    <div class="lots reveal">
+      <div class="lot off"><span class="nm">2.º lote</span><div class="pr ph">$147</div><span class="st">Próximamente</span></div>
+      <div class="lot on">
+        <span class="nm">1.er lote · Disponible hoy</span>
+        <div class="pr ph">$97</div>
+        <p class="anchor">Valor real <s class="ph">$674</s> · Pago único</p>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg>2 días de taller en vivo</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Área de miembros por 1 año</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Bono 1 y Bono 2 incluidos</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Certificado y comunidad privada</li>
+        </ul>
+        <button class="btn btn-gold btn-lg" data-open-modal>Reservar cupo <svg class="ic"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="lot off"><span class="nm">3.er lote</span><div class="pr ph">$197</div><span class="st">Próximamente</span></div>
+    </div>
+    <p class="center" style="margin-top:34px;display:flex;justify-content:center;gap:10px;align-items:center;color:var(--band-muted);font-size:.88rem"><svg class="ic"><use href="#i-lock"/></svg>Tus datos están protegidos</p>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="sec" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="guar reveal">
+      <svg class="ic"><use href="#i-shield"/></svg>
+      <div><h3>Garantía de <span class="ph">7 días</span></h3><p>Entra, mira las primeras clases y, si no es para ti, te devolvemos tu inversión. Aquí va la política real de tu negocio, escrita en lenguaje claro y sin letra pequeña.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap faq-grid">
+    <div class="reveal"><span class="eyebrow">Preguntas frecuentes</span><h2 style="margin-top:16px">¿Te quedó alguna <em>duda</em>?</h2><p class="lead" style="margin-top:18px">Resuelve aquí las objeciones más comunes antes de que te las pregunten.</p></div>
+    <div class="acc reveal" style="--d:.1s">
+      <div class="acc-item open"><h3><button class="acc-q" aria-expanded="true" aria-controls="f1" id="fq1"><span>¿Necesito experiencia previa?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f1" role="region" aria-labelledby="fq1"><div><p>Aclara a quién va dirigido tu curso y qué nivel mínimo necesita una persona para aprovecharlo.</p></div></div></div>
+      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f2" id="fq2"><span>¿Qué pasa si no puedo asistir en vivo?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f2" role="region" aria-labelledby="fq2"><div><p>Todas las sesiones quedan grabadas en el área de miembros, disponibles durante 1 año.</p></div></div></div>
+      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f3" id="fq3"><span>¿Recibo certificado?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f3" role="region" aria-labelledby="fq3"><div><p>Sí, un certificado digital de participación al terminar el taller.</p></div></div></div>
+      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f4" id="fq4"><span>¿Cuáles son las formas de pago?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f4" role="region" aria-labelledby="fq4"><div><p>Menciona tarjeta, transferencia u otros métodos disponibles en tu país.</p></div></div></div>
+      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f5" id="fq5"><span>¿Cómo pido ayuda si tengo un problema?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f5" role="region" aria-labelledby="fq5"><div><p>Indica tu canal de soporte y el tiempo de respuesta habitual.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEP (demo) -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="todo reveal">
+      <div class="copy">
+        <span class="eyebrow">Siguiente paso</span>
+        <h2>Esta página se vuelve <em>tuya</em> con tus respuestas</h2>
+        <p>Para reemplazar cada espacio de ejemplo con tu contenido real solo necesitamos la encuesta que te enviamos. Con eso armamos tu versión final.</p>
+      </div>
+      <ul>
+        <li><svg class="ic"><use href="#i-check"/></svg>Tu logo, colores y nombre de marca</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Tu foto, tu historia y tus credenciales</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Datos y fotos de tu clínica</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Programa, bonos, precios y fechas</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Testimonios y casos reales</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="band final" id="cierre">
+  <div class="wrap">
+    <div class="stack-c">
+      <span class="eyebrow reveal">Último aviso</span>
+      <h2 class="reveal" style="--d:.05s">Tu siguiente nivel empieza <em>en</em></h2>
+      <div class="cd reveal" style="--d:.1s" role="timer" aria-label="Cuenta regresiva">
+        <div><b data-cd="d">20</b><small>días</small></div>
+        <div><b data-cd="h">00</b><small>horas</small></div>
+        <div><b data-cd="m">00</b><small>min</small></div>
+        <div><b data-cd="s">00</b><small>seg</small></div>
+      </div>
+      <p class="lead reveal" style="--d:.15s">Los cupos son limitados. Si todos se llenan antes de la fecha de inicio, esta página se retira sin previo aviso.</p>
+      <div class="reveal" style="--d:.2s"><button class="btn btn-gold btn-lg" data-open-modal>Quiero reservar mi cupo <svg class="ic"><use href="#i-arrow"/></svg></button></div>
+      <p class="wa reveal" style="--d:.25s"><svg class="ic"><use href="#i-chat"/></svg>¿Dudas? Escríbenos por WhatsApp: <b class="ph">+00 000 000 0000</b></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 <span class="ph">Tu Marca</span>. Todos los derechos reservados.</span>
+    <nav aria-label="Legal"><span>Política de privacidad</span><span>Términos de uso</span><span class="ph">tucorreo@tudominio.com</span></nav>
+  </div>
+</footer>
+
+<div class="dock" id="dock">
+  <div><small>1.er lote · <span class="ph">74%</span> ocupado</small><b class="ph">$97</b></div>
+  <button class="btn btn-gold" data-open-modal>Reservar cupo</button>
+</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <button class="x" data-close aria-label="Cerrar"><svg class="ic"><use href="#i-plus"/></svg></button>
+    <div id="mform">
+      <h3 id="mt">Reserva tu cupo</h3>
+      <p>Completa tus datos para continuar con tu inscripción antes de que cierre el primer lote.</p>
+      <form id="form" novalidate>
+        <div class="fld"><label for="f-name">Nombre completo</label><input id="f-name" type="text" autocomplete="name" placeholder="Tu nombre" required></div>
+        <div class="fld"><label for="f-mail">Correo electrónico</label><input id="f-mail" type="email" autocomplete="email" placeholder="tu@correo.com" required></div>
+        <div class="fld"><label for="f-wa">WhatsApp</label><input id="f-wa" type="text" inputmode="tel" autocomplete="tel" placeholder="+00 000 000 0000"></div>
+        <div class="fld"><label for="f-job">Tu profesión</label>
+          <select id="f-job"><option>Selecciona una opción</option><option>Médico(a)</option><option>Odontólogo(a)</option><option>Enfermero(a)</option><option>Esteticista</option><option>Otra</option></select></div>
+        <button class="btn btn-gold btn-lg" type="submit">Continuar con mi inscripción <svg class="ic"><use href="#i-arrow"/></svg></button>
+        <p class="fine"><svg class="ic"><use href="#i-lock"/></svg>Tus datos están protegidos.</p>
+      </form>
+    </div>
+    <div class="ok" id="mok" hidden>
+      <svg class="ic"><use href="#i-check"/></svg>
+      <h3>Así se verá la confirmación</h3>
+      <p>Esta es una vista previa de diseño. En la página final, este formulario se conecta con tu sistema de registro y pagos.</p>
+      <button class="btn btn-line" data-close>Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveal on scroll */
+  var rev=$$('.reveal');
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    rev.forEach(function(el){io.observe(el)});
+    setTimeout(function(){rev.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('in')})},60);
+  }else{rev.forEach(function(el){el.classList.add('in')})}
+
+  /* count-up */
+  function fmt(n){try{return n.toLocaleString('en-US')}catch(e){return String(n)}}
+  var counters=$$('[data-count]');
+  function run(el){
+    var end=+el.getAttribute('data-count'),pre=el.getAttribute('data-prefix')||'';
+    if(reduce){el.textContent=pre+fmt(end);return}
+    var t0=null,dur=1600;
+    function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/dur,1),v=Math.round(end*(1-Math.pow(1-p,3)));el.textContent=pre+fmt(v);if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);co.unobserve(e.target)}})},{threshold:.6});
+    counters.forEach(function(c){co.observe(c)});
+  }
+
+  /* progress bar fill */
+  var bf=$('#barfill');
+  if(bf){
+    if('IntersectionObserver' in window){
+      var bo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){bf.style.width=bf.getAttribute('data-w')+'%';bo.disconnect()}})},{threshold:.5});
+      bo.observe(bf);
+    }else{bf.style.width=bf.getAttribute('data-w')+'%'}
+  }
+
+  /* countdown */
+  var T0=new Date('2026-11-14T20:00:00-06:00').getTime();
+  function target(){var t=T0,n=Date.now();while(t<n)t+=30*864e5;return t}
+  var tg=target();
+  function pad(n){return n<10?'0'+n:String(n)}
+  function tick(){
+    var d=Math.max(0,tg-Date.now()),s=Math.floor(d/1000);
+    var v={d:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60};
+    $$('[data-cd]').forEach(function(el){var k=el.getAttribute('data-cd');el.textContent=k==='d'?v.d:pad(v[k])});
+  }
+  tick();setInterval(tick,1000);
+
+  /* accordions */
+  $$('.acc-q').forEach(function(b){
+    b.addEventListener('click',function(){
+      var it=b.closest('.acc-item'),open=!it.classList.contains('open');
+      it.classList.toggle('open',open);b.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+
+  /* pain toggles */
+  var pains=$$('.pain'),tn=$('#tn'),tt=$('#tt');
+  function tally(){
+    var n=pains.filter(function(p){return p.getAttribute('aria-pressed')==='true'}).length;
+    tn.textContent=n;
+    tt.textContent=n===0?'de 4 marcadas. Toca las que te representen.':(n===4?'de 4. No estás solo, y todo esto tiene solución.':'de 4 marcadas. Más común de lo que imaginas.');
+  }
+  pains.forEach(function(p){p.addEventListener('click',function(){p.setAttribute('aria-pressed',p.getAttribute('aria-pressed')==='true'?'false':'true');tally()})});
+
+  /* before / after */
+  var ba=$('#ba'),rg=$('#baRange');
+  if(ba&&rg){var up=function(){ba.style.setProperty('--p',rg.value+'%')};rg.addEventListener('input',up);up()}
+
+  /* hero parallax */
+  var hero=$('#hero'),stage=$('#stage');
+  if(hero&&stage&&!reduce&&window.matchMedia('(pointer:fine)').matches){
+    hero.addEventListener('pointermove',function(e){
+      var r=hero.getBoundingClientRect();
+      stage.style.setProperty('--mx',((e.clientX-r.left)/r.width*2-1).toFixed(3));
+      stage.style.setProperty('--my',((e.clientY-r.top)/r.height*2-1).toFixed(3));
+    });
+    hero.addEventListener('pointerleave',function(){stage.style.setProperty('--mx',0);stage.style.setProperty('--my',0)});
+  }
+
+  /* scroll: progress + dock */
+  var prog=$('#prog'),dock=$('#dock'),ticking=false;
+  function onScroll(){
+    var h=document.documentElement,max=h.scrollHeight-innerHeight,p=max>0?Math.min(1,Math.max(0,(window.scrollY||h.scrollTop)/max)):0;
+    if(prog)prog.style.transform='scaleX('+p+')';
+    var hb=hero?hero.getBoundingClientRect().bottom:0,fin=$('#cierre'),fb=fin?fin.getBoundingClientRect().top:9999;
+    if(dock)dock.classList.toggle('show',hb<0&&fb>innerHeight*.6);
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+  onScroll();
+
+  /* modal */
+  var modal=$('#modal'),mform=$('#mform'),mok=$('#mok'),last=null;
+  function openM(){last=document.activeElement;mform.hidden=false;mok.hidden=true;modal.hidden=false;setTimeout(function(){var f=$('#f-name');if(f)f.focus()},60)}
+  function closeM(){modal.hidden=true;if(last&&last.focus)last.focus()}
+  $$('[data-open-modal]').forEach(function(b){b.addEventListener('click',openM)});
+  $$('[data-close]').forEach(function(b){b.addEventListener('click',closeM)});
+  modal.addEventListener('click',function(e){if(e.target===modal)closeM()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeM()});
+  $('#form').addEventListener('submit',function(e){e.preventDefault();mform.hidden=true;mok.hidden=false});
+})();
+</script>
