@@ -1,5 +1,15 @@
-<title>Maqueta Landing Curso</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tu Marca · Nombre de tu curso, taller online en vivo</title>
+<meta name="description" content="Taller online en vivo de 2 días con certificado, comunidad privada y 1 año de acceso. Cupos limitados.">
+<meta name="theme-color" content="#0E2420">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tu Marca · Nombre de tu curso">
+<meta property="og:description" content="Taller online en vivo de 2 días con certificado, comunidad privada y 1 año de acceso.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230E2420'/%3E%3Ctext x='16' y='22.5' font-size='19' text-anchor='middle' fill='%23C9A15B' font-family='Georgia,serif' font-style='italic'%3ET%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -63,7 +73,11 @@ h2 em,h1 em{font-style:italic;color:var(--accent-ink)}
 .head .lead{margin-top:2px}
 
 /* placeholder marker */
-.ph{border-bottom:1.5px dotted var(--accent-ink);background:linear-gradient(transparent 64%,color-mix(in srgb,var(--accent-fill) 24%,transparent) 64%)}
+/* ponytail: quita este bloque (y las clases .ph) para entregar la versión final sin comillas */
+.ph::before{content:"\201C"}
+.ph::after{content:"\201D"}
+.ph::before,.ph::after{color:var(--accent-ink);font-weight:600;font-style:normal}
+.stat .ph::before,.stat .ph::after,.fcard .ph::before,.fcard .ph::after,.pr.ph::before,.pr.ph::after,.big .ph::before,.big .ph::after,.seal .ph::before,.seal .ph::after,.tl .ph::before,.tl .ph::after,.dock .ph::before,.dock .ph::after{font-size:.5em;vertical-align:.7em;font-family:var(--body)}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:16px 28px;font-weight:600;font-size:1rem;text-decoration:none;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease);isolation:isolate}
@@ -384,7 +398,7 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 @keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
 .sheet h3{font-family:var(--display);font-weight:400;font-size:2rem;line-height:1.05;margin-bottom:8px}
 .sheet>p{color:var(--muted);font-size:.92rem;margin-bottom:22px}
-.x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;display:grid;place-items:center}
+.x{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;display:grid;place-items:center}
 .x .ic{transform:rotate(45deg)}
 .fld{display:grid;gap:6px;margin-bottom:14px}
 .fld label{font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--muted)}
@@ -399,6 +413,22 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 .js .reveal{opacity:.2;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
 .js .reveal.in{opacity:1;transform:none}
 
+/* base polish */
+[hidden]{display:none!important}
+::selection{background:color-mix(in srgb,var(--accent-fill) 45%,transparent)}
+.skip{position:absolute;left:12px;top:-64px;z-index:200;background:var(--accent-fill);color:var(--on-accent);padding:10px 18px;border-radius:999px;font-weight:600;text-decoration:none;transition:top .2s}
+.skip:focus{top:12px}
+.btn:active{transform:translateY(0) scale(.98)}
+header.top{transition:box-shadow .3s}
+header.top.scrolled{box-shadow:0 14px 34px -26px rgba(14,27,25,.55)}
+.top-r{display:flex;align-items:center;gap:10px}
+.menu{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;place-items:center}
+.foot-brand{display:flex;align-items:center;gap:14px}
+.foot-brand .mono{background:var(--accent-fill);color:var(--on-accent)}
+.foot-brand b{display:block;font-family:var(--display);font-weight:400;font-size:1.3rem;line-height:1.1;color:var(--band-fg)}
+footer a{color:inherit;text-decoration:none;transition:color .25s}
+footer a:hover{color:var(--band-fg)}
+
 /* responsive */
 @media (max-width:1000px){
   .hero-grid,.pain-grid,.prod,.give,.story,.res,.faq-grid,.todo{grid-template-columns:1fr}
@@ -409,7 +439,12 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   .lots{grid-template-columns:1fr}
   .lot.on{order:-1}
   .bonus{grid-template-columns:1fr}
-  .top nav{display:none}
+  .menu{display:grid}
+  .top nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;padding:4px max(16px,env(safe-area-inset-left,0px)) 12px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .top nav.open{display:flex}
+  .top nav a{padding:15px 0;font-size:1rem;border-bottom:1px solid var(--line)}
+  .top nav a:last-child{border-bottom:0}
+  .top nav a::after{display:none}
   .stage{max-width:440px}
   .cover{max-width:520px;margin-inline:auto;width:100%}
   .seal{right:8px}
@@ -435,12 +470,25 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   .tl li{grid-template-columns:58px 1fr}
   .stats{grid-template-columns:1fr 1fr 1fr;padding:20px}
   .btn-lg{padding:17px 26px}
+  .stats{padding:20px 16px;gap:8px}
+  .stat b{font-size:1.7rem}
+  .stat small{font-size:.72rem}
+  .receipt{padding:24px}
+  .sum .big{font-size:3.1rem}
+  .lot.on .pr{font-size:3.9rem}
 }
 @media (max-width:420px){
   .fcard.c{display:none}
   .cta-row .btn{width:100%}
   .cd{gap:6px}
   .cd div{min-width:0;flex:1}
+  .top .wrap{gap:8px}
+  .top-r{gap:6px}
+  .top .btn{padding:10px 14px;font-size:.82rem}
+  .brand{font-size:1.2rem;gap:8px}
+  .mono{width:34px;height:34px}
+  .tl li{grid-template-columns:50px 1fr}
+  .note{font-size:.75rem}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -449,9 +497,13 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   .track span:nth-child(n+7){display:none}
 }
 </style>
+</head>
+<body>
+<a class="skip" href="#inicio">Saltar al contenido</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
@@ -477,7 +529,7 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 <div class="note">
   <div class="wrap">
     <span><b>Vista previa de diseño.</b> Todo el contenido es de ejemplo y se reemplaza con tu información.</span>
-    <span>Lo marcado con <span class="ph">subrayado dorado</span> es lo primero que personalizamos.</span>
+    <span>Lo que va entre <span class="ph">comillas</span> es lo que personalizamos.</span>
   </div>
 </div>
 
@@ -486,7 +538,7 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
     <a class="brand" href="#inicio" aria-label="Inicio">
       <span class="mono">T</span><span class="nm ph">Tu Marca</span>
     </a>
-    <nav aria-label="Principal">
+    <nav id="nav" aria-label="Principal">
       <a href="#programa">Programa</a>
       <a href="#historia">Tu historia</a>
       <a href="#clinica">Tu clínica</a>
@@ -494,7 +546,10 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
       <a href="#precio">Precio</a>
       <a href="#faq">Preguntas</a>
     </nav>
-    <button class="btn btn-gold" data-open-modal>Reservar cupo</button>
+    <div class="top-r">
+      <button class="btn btn-gold" data-open-modal>Reservar cupo</button>
+      <button class="menu" aria-label="Menú" aria-expanded="false" aria-controls="nav"><svg class="ic"><use href="#i-menu"/></svg></button>
+    </div>
   </div>
   <div class="progress"><i id="prog"></i></div>
 </header>
@@ -505,16 +560,16 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   <div class="wrap hero-grid">
     <div>
       <span class="pill rise" style="--d:.05s"><span class="dot"></span><span><b class="ph">74%</b> de los cupos ocupados · Primer lote</span></span>
-      <h1 class="rise" style="--d:.15s">Convierte tu <em>experiencia</em> en resultados que tus pacientes recomiendan</h1>
-      <p class="lead rise" style="--d:.28s">Un taller online en vivo para profesionales que quieren más seguridad, mejores resultados y un servicio que se distinga del resto. Todo lo que necesitas, en <span class="ph">2 días</span>.</p>
+      <h1 class="rise" style="--d:.15s"><span class="ph">Convierte tu <em>experiencia</em> en resultados que tus pacientes recomiendan</span></h1>
+      <p class="lead rise ph" style="--d:.28s">Un taller online en vivo para profesionales que quieren más seguridad, mejores resultados y un servicio que se distinga del resto. Todo lo que necesitas, en 2 días.</p>
       <div class="cta-row rise" style="--d:.4s">
         <button class="btn btn-gold btn-lg" data-open-modal>Reservar mi cupo <svg class="ic"><use href="#i-arrow"/></svg></button>
         <a class="btn btn-line btn-lg" href="#programa">Ver el programa</a>
       </div>
       <ul class="trust rise" style="--d:.52s">
-        <li><svg class="ic"><use href="#i-video"/></svg>Online y en vivo</li>
-        <li><svg class="ic"><use href="#i-clock"/></svg>1 año de acceso</li>
-        <li><svg class="ic"><use href="#i-award"/></svg>Certificado digital</li>
+        <li><svg class="ic"><use href="#i-video"/></svg><span class="ph">Online y en vivo</span></li>
+        <li><svg class="ic"><use href="#i-clock"/></svg><span class="ph">1 año de acceso</span></li>
+        <li><svg class="ic"><use href="#i-award"/></svg><span class="ph">Certificado digital</span></li>
       </ul>
     </div>
 
@@ -522,7 +577,7 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
       <div class="halo"></div>
       <div class="halo two"></div>
       <div class="arch ph-img">
-        <div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b>Tu foto aquí</b><small>Retrato profesional · 4:5</small></div>
+        <div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b class="ph">Tu foto aquí</b><small>Retrato profesional · 4:5</small></div>
       </div>
       <div class="fcard a"><div class="avs"><i></i><i></i><i></i></div><div><b class="ph">+2,000</b><small>alumnos formados</small></div></div>
       <div class="fcard b"><svg class="ic"><use href="#i-star"/></svg><div><b class="ph">4.9</b><small>valoración promedio</small></div></div>
@@ -535,7 +590,7 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 <div class="logos" aria-label="Medios y aliados">
   <p class="lab">Como te vieron en · <span class="ph">tus logos aquí</span></p>
   <div class="track" aria-hidden="true">
-    <span>Tu Medio</span><span>Aliado Uno</span><span>Tu Certificación</span><span>Congreso</span><span>Revista Líder</span><span>Tu Sociedad</span><span>Tu Medio</span><span>Aliado Uno</span><span>Tu Certificación</span><span>Congreso</span><span>Revista Líder</span><span>Tu Sociedad</span>
+    <span class="ph">Tu Medio</span><span class="ph">Aliado Uno</span><span class="ph">Tu Certificación</span><span class="ph">Congreso</span><span class="ph">Revista Líder</span><span class="ph">Tu Sociedad</span><span class="ph">Tu Medio</span><span class="ph">Aliado Uno</span><span class="ph">Tu Certificación</span><span class="ph">Congreso</span><span class="ph">Revista Líder</span><span class="ph">Tu Sociedad</span>
   </div>
 </div>
 
@@ -544,7 +599,7 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   <div class="wrap pain-grid">
     <div class="pain-side reveal">
       <span class="eyebrow">Te suena familiar</span>
-      <h2>Si trabajas en <em>tu sector</em>, probablemente ya pasaste por esto</h2>
+      <h2>Si trabajas en <em class="ph">tu sector</em>, probablemente ya pasaste por esto</h2>
       <p class="lead">Marca las que te hayan pasado. Son más comunes de lo que imaginas, y tienen solución.</p>
       <div class="tally" aria-live="polite"><b id="tn">0</b><span id="tt">de 4 marcadas. Toca las que te representen.</span></div>
     </div>
@@ -565,12 +620,12 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
       <h2>Con <span class="ph">Nombre de tu curso</span> vas a <em>lograr</em></h2>
     </div>
     <div class="bens">
-      <article class="ben reveal"><svg class="ic"><use href="#i-shield"/></svg><small>CONFIANZA</small><h3>Seguridad para ofrecer y ejecutar tu servicio</h3><p>Explica en una línea el cambio concreto que logra tu cliente ideal.</p></article>
-      <article class="ben reveal" style="--d:.08s"><svg class="ic"><use href="#i-target"/></svg><small>EFICIENCIA</small><h3>Resultados completos con menos tiempo y recursos</h3><p>Resume cómo tu método simplifica lo que antes era complicado.</p></article>
-      <article class="ben reveal" style="--d:.16s"><svg class="ic"><use href="#i-layers"/></svg><small>PREPARACIÓN</small><h3>Listo para los casos que hoy te generan dudas</h3><p>Nombra la situación difícil que tu curso ayuda a resolver.</p></article>
-      <article class="ben reveal"><svg class="ic"><use href="#i-star"/></svg><small>DIFERENCIACIÓN</small><h3>Destaca frente a quienes aplican fórmulas genéricas</h3><p>Cuenta qué te hace distinto y por qué importa a tu mercado.</p></article>
-      <article class="ben reveal" style="--d:.08s"><svg class="ic"><use href="#i-trend"/></svg><small>RENTABILIDAD</small><h3>Sube el valor promedio de cada atención</h3><p>Conecta tu enseñanza con un resultado en ingresos medible.</p></article>
-      <article class="ben reveal" style="--d:.16s"><svg class="ic"><use href="#i-heart"/></svg><small>ORGULLO</small><h3>Siente orgullo de tu trabajo clínico</h3><p>Cierra con el beneficio emocional que tu alumno busca de verdad.</p></article>
+      <article class="ben reveal"><svg class="ic"><use href="#i-shield"/></svg><small>CONFIANZA</small><h3 class="ph">Seguridad para ofrecer y ejecutar tu servicio</h3><p class="ph">Explica en una línea el cambio concreto que logra tu cliente ideal.</p></article>
+      <article class="ben reveal" style="--d:.08s"><svg class="ic"><use href="#i-target"/></svg><small>EFICIENCIA</small><h3 class="ph">Resultados completos con menos tiempo y recursos</h3><p class="ph">Resume cómo tu método simplifica lo que antes era complicado.</p></article>
+      <article class="ben reveal" style="--d:.16s"><svg class="ic"><use href="#i-layers"/></svg><small>PREPARACIÓN</small><h3 class="ph">Listo para los casos que hoy te generan dudas</h3><p class="ph">Nombra la situación difícil que tu curso ayuda a resolver.</p></article>
+      <article class="ben reveal"><svg class="ic"><use href="#i-star"/></svg><small>DIFERENCIACIÓN</small><h3 class="ph">Destaca frente a quienes aplican fórmulas genéricas</h3><p class="ph">Cuenta qué te hace distinto y por qué importa a tu mercado.</p></article>
+      <article class="ben reveal" style="--d:.08s"><svg class="ic"><use href="#i-trend"/></svg><small>RENTABILIDAD</small><h3 class="ph">Sube el valor promedio de cada atención</h3><p class="ph">Conecta tu enseñanza con un resultado en ingresos medible.</p></article>
+      <article class="ben reveal" style="--d:.16s"><svg class="ic"><use href="#i-heart"/></svg><small>ORGULLO</small><h3 class="ph">Siente orgullo de tu trabajo clínico</h3><p class="ph">Cierra con el beneficio emocional que tu alumno busca de verdad.</p></article>
     </div>
   </div>
 </section>
@@ -580,16 +635,16 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   <div class="wrap">
     <div class="prod">
       <div class="cover reveal">
-        <div class="ph-img"><div class="ph-in"><svg class="ic"><use href="#i-layers"/></svg><b>Tu producto</b><small>Portada o mockup del curso</small></div></div>
+        <div class="ph-img"><div class="ph-in"><svg class="ic"><use href="#i-layers"/></svg><b class="ph">Tu producto</b><small>Portada o mockup del curso</small></div></div>
         <div class="seal"><div><b class="ph">2</b>días en<br>vivo</div></div>
       </div>
       <div class="prod-copy reveal" style="--d:.1s">
         <span class="eyebrow">Tu producto</span>
-        <h2>¿Qué es <em>Nombre de tu curso</em>?</h2>
-        <p class="lead">Aprende las técnicas más actualizadas de tu especialidad y descubre cómo los pequeños detalles marcan toda la diferencia. Recibes todo el contenido, más una inmersión en vivo para resolver tus dudas con casos reales.</p>
+        <h2>¿Qué es <em class="ph">Nombre de tu curso</em>?</h2>
+        <p class="lead ph">Aprende las técnicas más actualizadas de tu especialidad y descubre cómo los pequeños detalles marcan toda la diferencia. Recibes todo el contenido, más una inmersión en vivo para resolver tus dudas con casos reales.</p>
         <div class="callout">
           <h3>Por qué <span class="ph">2 días</span> son suficientes</h3>
-          <p>Aquí explicas tu método en pocas líneas: qué se aprende primero, cómo se practica y por qué ese orden acelera el resultado.</p>
+          <p class="ph">Aquí explicas tu método en pocas líneas: qué se aprende primero, cómo se practica y por qué ese orden acelera el resultado.</p>
         </div>
         <div><button class="btn btn-gold" data-open-modal>Quiero mi lugar <svg class="ic"><use href="#i-arrow"/></svg></button></div>
       </div>
@@ -598,14 +653,14 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
     <div class="prog-wrap reveal">
       <div class="head" style="margin-bottom:28px"><span class="eyebrow">El programa</span><h2>Qué vas a <em>aprender</em>, paso a paso</h2></div>
       <div class="acc" id="prog-acc">
-        <div class="acc-item open"><h3><button class="acc-q" aria-expanded="true" aria-controls="p1" id="pq1"><span><small>Día 1 · Mañana</small>Fundamentos y método</span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
-          <div class="acc-a" id="p1" role="region" aria-labelledby="pq1"><div><ul><li>Qué cambia en tu forma de evaluar cada caso</li><li>El orden de prioridades de tu método</li><li>Errores frecuentes y cómo evitarlos</li></ul></div></div></div>
-        <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="p2" id="pq2"><span><small>Día 1 · Tarde</small>Técnica aplicada</span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
-          <div class="acc-a" id="p2" role="region" aria-labelledby="pq2"><div><ul><li>Demostración paso a paso en vivo</li><li>Cómo adaptar la técnica a cada perfil</li><li>Material de apoyo para practicar</li></ul></div></div></div>
-        <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="p3" id="pq3"><span><small>Día 2 · Mañana</small>Casos reales y complicaciones</span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
-          <div class="acc-a" id="p3" role="region" aria-labelledby="pq3"><div><ul><li>Análisis de casos clínicos en vivo</li><li>Protocolo ante situaciones inesperadas</li><li>Preguntas y respuestas con el equipo</li></ul></div></div></div>
-        <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="p4" id="pq4"><span><small>Día 2 · Tarde</small>Tu plan de implementación</span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
-          <div class="acc-a" id="p4" role="region" aria-labelledby="pq4"><div><p>Cómo llevar lo aprendido a tu consulta desde la semana siguiente: comunicación con el paciente, presentación de tu servicio y seguimiento.</p></div></div></div>
+        <div class="acc-item open"><h3><button class="acc-q" aria-expanded="true" aria-controls="p1" id="pq1"><span><small class="ph">Día 1 · Mañana</small><span class="ph">Fundamentos y método</span></span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
+          <div class="acc-a" id="p1" role="region" aria-labelledby="pq1"><div><ul><li><span class="ph">Qué cambia en tu forma de evaluar cada caso</span></li><li><span class="ph">El orden de prioridades de tu método</span></li><li><span class="ph">Errores frecuentes y cómo evitarlos</span></li></ul></div></div></div>
+        <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="p2" id="pq2"><span><small class="ph">Día 1 · Tarde</small><span class="ph">Técnica aplicada</span></span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
+          <div class="acc-a" id="p2" role="region" aria-labelledby="pq2"><div><ul><li><span class="ph">Demostración paso a paso en vivo</span></li><li><span class="ph">Cómo adaptar la técnica a cada perfil</span></li><li><span class="ph">Material de apoyo para practicar</span></li></ul></div></div></div>
+        <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="p3" id="pq3"><span><small class="ph">Día 2 · Mañana</small><span class="ph">Casos reales y complicaciones</span></span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
+          <div class="acc-a" id="p3" role="region" aria-labelledby="pq3"><div><ul><li><span class="ph">Análisis de casos clínicos en vivo</span></li><li><span class="ph">Protocolo ante situaciones inesperadas</span></li><li><span class="ph">Preguntas y respuestas con el equipo</span></li></ul></div></div></div>
+        <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="p4" id="pq4"><span><small class="ph">Día 2 · Tarde</small><span class="ph">Tu plan de implementación</span></span><svg class="ic"><use href="#i-plus"/></svg></button></h3>
+          <div class="acc-a" id="p4" role="region" aria-labelledby="pq4"><div><p class="ph">Cómo llevar lo aprendido a tu consulta desde la semana siguiente: comunicación con el paciente, presentación de tu servicio y seguimiento.</p></div></div></div>
       </div>
     </div>
   </div>
@@ -617,22 +672,22 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
     <div class="head reveal"><span class="eyebrow">Lo que incluye</span><h2>Todo lo que <em>recibes</em> al inscribirte</h2></div>
     <div class="give">
       <div class="cards">
-        <article class="card reveal"><svg class="ic"><use href="#i-video"/></svg><h3>2 días de taller en vivo</h3><p>Sesiones online completas con tu instructor, con espacio para preguntas.</p></article>
-        <article class="card reveal" style="--d:.07s"><svg class="ic"><use href="#i-target"/></svg><h3>Técnicas y método exclusivos</h3><p>Una metodología actualizada y validada en tu propia práctica.</p></article>
-        <article class="card reveal" style="--d:.14s"><svg class="ic"><use href="#i-award"/></svg><h3>Certificado digital</h3><p>Reconocimiento oficial para sumar a tu currículum.</p></article>
-        <article class="card reveal"><svg class="ic"><use href="#i-book"/></svg><h3>Área de miembros por 1 año</h3><p>Todas las clases para volver a verlas cuando quieras.</p></article>
-        <article class="card reveal" style="--d:.07s"><svg class="ic"><use href="#i-chat"/></svg><h3>Comunidad privada</h3><p>Avisos, materiales e intercambio con otros alumnos.</p></article>
-        <article class="card reveal" style="--d:.14s"><svg class="ic"><use href="#i-layers"/></svg><h3>Manual completo</h3><p>Material de consulta para repasar después del evento.</p></article>
+        <article class="card reveal"><svg class="ic"><use href="#i-video"/></svg><h3 class="ph">2 días de taller en vivo</h3><p class="ph">Sesiones online completas con tu instructor, con espacio para preguntas.</p></article>
+        <article class="card reveal" style="--d:.07s"><svg class="ic"><use href="#i-target"/></svg><h3 class="ph">Técnicas y método exclusivos</h3><p class="ph">Una metodología actualizada y validada en tu propia práctica.</p></article>
+        <article class="card reveal" style="--d:.14s"><svg class="ic"><use href="#i-award"/></svg><h3 class="ph">Certificado digital</h3><p class="ph">Reconocimiento oficial para sumar a tu currículum.</p></article>
+        <article class="card reveal"><svg class="ic"><use href="#i-book"/></svg><h3 class="ph">Área de miembros por 1 año</h3><p class="ph">Todas las clases para volver a verlas cuando quieras.</p></article>
+        <article class="card reveal" style="--d:.07s"><svg class="ic"><use href="#i-chat"/></svg><h3 class="ph">Comunidad privada</h3><p class="ph">Avisos, materiales e intercambio con otros alumnos.</p></article>
+        <article class="card reveal" style="--d:.14s"><svg class="ic"><use href="#i-layers"/></svg><h3 class="ph">Manual completo</h3><p class="ph">Material de consulta para repasar después del evento.</p></article>
       </div>
       <aside class="receipt reveal" style="--d:.1s" aria-label="Valor total">
         <h3>Lo que vale todo esto</h3>
         <ul class="stack">
-          <li><span>Taller en vivo (2 días)</span><i></i><b class="ph">$249</b></li>
-          <li><span>Clases grabadas · 1 año</span><i></i><b class="ph">$149</b></li>
-          <li><span>Manual completo</span><i></i><b class="ph">$59</b></li>
-          <li><span>Comunidad privada</span><i></i><b class="ph">$39</b></li>
-          <li><span>Bono 1 · Kit de documentos</span><i></i><b class="ph">$79</b></li>
-          <li><span>Bono 2 · Clase magistral</span><i></i><b class="ph">$99</b></li>
+          <li><span class="ph">Taller en vivo (2 días)</span><i></i><b class="ph">$249</b></li>
+          <li><span class="ph">Clases grabadas · 1 año</span><i></i><b class="ph">$149</b></li>
+          <li><span class="ph">Manual completo</span><i></i><b class="ph">$59</b></li>
+          <li><span class="ph">Comunidad privada</span><i></i><b class="ph">$39</b></li>
+          <li><span class="ph">Bono 1 · Kit de documentos</span><i></i><b class="ph">$79</b></li>
+          <li><span class="ph">Bono 2 · Clase magistral</span><i></i><b class="ph">$99</b></li>
         </ul>
         <div class="sum">
           <div class="row"><span>Valor total</span><s class="ph">$674</s></div>
@@ -650,10 +705,10 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   <div class="wrap">
     <div class="head reveal"><span class="eyebrow">Bonos exclusivos</span><h2>Y además, <em>dos regalos</em> solo para esta edición</h2></div>
     <div class="bonus">
-      <article class="bn reveal"><div class="ph-img"><div class="ph-in"><svg class="ic"><use href="#i-gift"/></svg><b>Tu bono</b><small>Imagen</small></div></div>
-        <div><span class="tag"><svg class="ic"><use href="#i-star"/></svg>Bono 1</span><h3>Kit de documentos para una clínica de alto nivel</h3><p>Fichas, consentimientos y formularios listos para implementar en minutos y transmitir más profesionalismo.</p></div></article>
-      <article class="bn reveal" style="--d:.1s"><div class="ph-img"><div class="ph-in"><svg class="ic"><use href="#i-gift"/></svg><b>Tu bono</b><small>Imagen</small></div></div>
-        <div><span class="tag"><svg class="ic"><use href="#i-star"/></svg>Bono 2</span><h3>Clase magistral que antes solo ofrecías presencial</h3><p>Contenido exclusivo de tus cursos de mayor valor, disponible ahora para quienes se inscriban en el primer lote.</p></div></article>
+      <article class="bn reveal"><div class="ph-img"><div class="ph-in"><svg class="ic"><use href="#i-gift"/></svg><b class="ph">Tu bono</b><small>Imagen</small></div></div>
+        <div><span class="tag"><svg class="ic"><use href="#i-star"/></svg>Bono 1</span><h3 class="ph">Kit de documentos para una clínica de alto nivel</h3><p class="ph">Fichas, consentimientos y formularios listos para implementar en minutos y transmitir más profesionalismo.</p></div></article>
+      <article class="bn reveal" style="--d:.1s"><div class="ph-img"><div class="ph-in"><svg class="ic"><use href="#i-gift"/></svg><b class="ph">Tu bono</b><small>Imagen</small></div></div>
+        <div><span class="tag"><svg class="ic"><use href="#i-star"/></svg>Bono 2</span><h3 class="ph">Clase magistral que antes solo ofrecías presencial</h3><p class="ph">Contenido exclusivo de tus cursos de mayor valor, disponible ahora para quienes se inscriban en el primer lote.</p></div></article>
     </div>
   </div>
 </section>
@@ -661,19 +716,19 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 <!-- CLINIC -->
 <section class="sec" id="clinica" style="padding-top:0">
   <div class="wrap">
-    <div class="head reveal"><span class="eyebrow">Tu clínica</span><h2>El lugar donde ocurre <em>todo</em></h2><p class="lead">Muestra tu espacio, tu equipo y los números que respaldan tu trabajo. La confianza se construye con detalles reales.</p></div>
+    <div class="head reveal"><span class="eyebrow">Tu clínica</span><h2>El lugar donde ocurre <em>todo</em></h2><p class="lead ph">Muestra tu espacio, tu equipo y los números que respaldan tu trabajo. La confianza se construye con detalles reales.</p></div>
     <div class="bento">
-      <div class="ph-img b-main reveal"><div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b>Tu clínica</b><small>Foto panorámica · 16:10</small></div></div>
-      <div class="ph-img b-s reveal" style="--d:.08s"><div class="ph-in"><svg class="ic"><use href="#i-users"/></svg><b>Tu equipo</b><small>Foto</small></div></div>
-      <div class="ph-img b-s reveal" style="--d:.16s"><div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b>Tu consultorio</b><small>Foto</small></div></div>
+      <div class="ph-img b-main reveal"><div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b class="ph">Tu clínica</b><small>Foto panorámica · 16:10</small></div></div>
+      <div class="ph-img b-s reveal" style="--d:.08s"><div class="ph-in"><svg class="ic"><use href="#i-users"/></svg><b class="ph">Tu equipo</b><small>Foto</small></div></div>
+      <div class="ph-img b-s reveal" style="--d:.16s"><div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b class="ph">Tu consultorio</b><small>Foto</small></div></div>
       <div class="info reveal">
-        <div><svg class="ic"><use href="#i-pin"/></svg><p><b class="ph">Dirección de tu clínica</b><span>Colonia, ciudad y país</span></p></div>
-        <div><svg class="ic"><use href="#i-clock"/></svg><p><b class="ph">Lunes a sábado</b><span>9:00 a 19:00 h</span></p></div>
+        <div><svg class="ic"><use href="#i-pin"/></svg><p><b class="ph">Dirección de tu clínica</b><span class="ph">Colonia, ciudad y país</span></p></div>
+        <div><svg class="ic"><use href="#i-clock"/></svg><p><b class="ph">Lunes a sábado</b><span class="ph">9:00 a 19:00 h</span></p></div>
       </div>
       <div class="stats reveal" style="--d:.1s">
-        <div class="stat"><b data-count="10" data-prefix="+">+10</b><small>años de experiencia</small></div>
-        <div class="stat"><b data-count="5000" data-prefix="+">+5,000</b><small>pacientes atendidos</small></div>
-        <div class="stat"><b data-count="2000" data-prefix="+">+2,000</b><small>alumnos formados</small></div>
+        <div class="stat"><b class="ph" data-count="10" data-prefix="+">+10</b><small class="ph">años de experiencia</small></div>
+        <div class="stat"><b class="ph" data-count="5000" data-prefix="+">+5,000</b><small class="ph">pacientes atendidos</small></div>
+        <div class="stat"><b class="ph" data-count="2000" data-prefix="+">+2,000</b><small class="ph">alumnos formados</small></div>
       </div>
     </div>
   </div>
@@ -683,21 +738,21 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 <section class="sec" id="historia" style="padding-top:0">
   <div class="wrap story">
     <div class="portrait reveal">
-      <div class="arch ph-img"><div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b>Tu retrato</b><small>Foto de pie o busto · 4:5</small></div></div>
+      <div class="arch ph-img"><div class="ph-in"><svg class="ic"><use href="#i-camera"/></svg><b class="ph">Tu retrato</b><small>Foto de pie o busto · 4:5</small></div></div>
     </div>
     <div class="story-copy reveal" style="--d:.1s">
       <span class="eyebrow">Tu historia</span>
       <h2>Mucho gusto, soy <em class="ph" style="font-style:italic">Tu Nombre</em></h2>
-      <p>Aquí cuentas por qué empezaste, qué problema viste en tu sector y cómo llegaste al método que hoy enseñas. Una historia breve, humana y concreta convence más que una lista de títulos.</p>
-      <p>Cierra con la razón por la que ahora quieres compartir lo que aprendiste y qué esperas que logre cada alumno.</p>
+      <p class="ph">Aquí cuentas por qué empezaste, qué problema viste en tu sector y cómo llegaste al método que hoy enseñas. Una historia breve, humana y concreta convence más que una lista de títulos.</p>
+      <p class="ph">Cierra con la razón por la que ahora quieres compartir lo que aprendiste y qué esperas que logre cada alumno.</p>
       <ul class="tl">
-        <li><b class="ph">2012</b><span>Inicio de tu carrera y primer gran aprendizaje</span></li>
-        <li><b class="ph">2016</b><span>Especialización y primeros casos de alto impacto</span></li>
-        <li><b class="ph">2020</b><span>Abres tu clínica y creas tu método propio</span></li>
-        <li><b class="ph">2024</b><span>Lanzas tu primer curso y formas a tu primera generación</span></li>
+        <li><b class="ph">2012</b><span class="ph">Inicio de tu carrera y primer gran aprendizaje</span></li>
+        <li><b class="ph">2016</b><span class="ph">Especialización y primeros casos de alto impacto</span></li>
+        <li><b class="ph">2020</b><span class="ph">Abres tu clínica y creas tu método propio</span></li>
+        <li><b class="ph">2024</b><span class="ph">Lanzas tu primer curso y formas a tu primera generación</span></li>
       </ul>
-      <div class="chips"><span>Tu título</span><span>Tu posgrado</span><span>Tu libro o publicación</span><span>Tu certificación</span></div>
-      <p class="sig">Tu Nombre</p>
+      <div class="chips"><span class="ph">Tu título</span><span class="ph">Tu posgrado</span><span class="ph">Tu libro o publicación</span><span class="ph">Tu certificación</span></div>
+      <p class="sig ph">Tu Nombre</p>
     </div>
   </div>
 </section>
@@ -707,15 +762,15 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   <div class="wrap">
     <div class="res">
       <div class="ba reveal" id="ba" role="group" aria-label="Comparador antes y después">
-        <div class="ba-layer ba-before"><span>Antes</span><p>Tu foto de antes</p></div>
-        <div class="ba-layer ba-after"><span>Después</span><p>Tu foto de después</p></div>
+        <div class="ba-layer ba-before"><span>Antes</span><p class="ph">Tu foto de antes</p></div>
+        <div class="ba-layer ba-after"><span>Después</span><p class="ph">Tu foto de después</p></div>
         <div class="ba-handle"><i><svg class="ic"><use href="#i-swap"/></svg></i></div>
         <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Deslizar para comparar antes y después">
       </div>
       <div class="res-copy reveal" style="--d:.1s">
         <span class="eyebrow">Resultados</span>
         <h2>Los resultados <em>hablan</em> mejor que tú</h2>
-        <p class="lead">Un comparador interactivo con tus casos reales. Tus visitantes lo deslizan, lo ven y entienden tu trabajo en segundos.</p>
+        <p class="lead ph">Un comparador interactivo con tus casos reales. Tus visitantes lo deslizan, lo ven y entienden tu trabajo en segundos.</p>
         <p class="hint"><svg class="ic"><use href="#i-swap"/></svg>Desliza la imagen para comparar</p>
       </div>
     </div>
@@ -723,14 +778,14 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
     <div class="tgrid">
       <figure class="tc f reveal" style="margin:0"><div><span class="ex">Testimonio de ejemplo</span></div>
         <div class="stars" aria-label="5 estrellas"><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg><svg class="ic"><use href="#i-star"/></svg></div>
-        <blockquote>Aquí va el testimonio real de un alumno: lo que le costaba antes, lo que cambió y el resultado concreto que logró.</blockquote>
-        <figcaption class="who"><i></i><span><b class="ph">Nombre del alumno</b><small>Profesión · Ciudad</small></span></figcaption></figure>
+        <blockquote class="ph">Aquí va el testimonio real de un alumno: lo que le costaba antes, lo que cambió y el resultado concreto que logró.</blockquote>
+        <figcaption class="who"><i></i><span><b class="ph">Nombre del alumno</b><small class="ph">Profesión · Ciudad</small></span></figcaption></figure>
       <figure class="tc reveal" style="margin:0;--d:.08s"><span class="ex">Testimonio de ejemplo</span>
-        <blockquote>Un mensaje corto de otro alumno, con un resultado medible o una frase memorable.</blockquote>
-        <figcaption class="who"><i></i><span><b class="ph">Nombre del alumno</b><small>Profesión · Ciudad</small></span></figcaption></figure>
+        <blockquote class="ph">Un mensaje corto de otro alumno, con un resultado medible o una frase memorable.</blockquote>
+        <figcaption class="who"><i></i><span><b class="ph">Nombre del alumno</b><small class="ph">Profesión · Ciudad</small></span></figcaption></figure>
       <figure class="tc reveal" style="margin:0;--d:.16s"><span class="ex">Testimonio de ejemplo</span>
-        <blockquote>Otro testimonio breve que responda a una duda frecuente de quien aún no se decide.</blockquote>
-        <figcaption class="who"><i></i><span><b class="ph">Nombre del alumno</b><small>Profesión · Ciudad</small></span></figcaption></figure>
+        <blockquote class="ph">Otro testimonio breve que responda a una duda frecuente de quien aún no se decide.</blockquote>
+        <figcaption class="who"><i></i><span><b class="ph">Nombre del alumno</b><small class="ph">Profesión · Ciudad</small></span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -741,27 +796,27 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
     <div class="head center reveal">
       <span class="eyebrow">Asegura tu cupo</span>
       <h2>100% online y <em>cupo cerrado</em></h2>
-      <p class="lead">El precio sube con cada lote. Entre más temprano te inscribes, menos pagas.</p>
+      <p class="lead ph">El precio sube con cada lote. Entre más temprano te inscribes, menos pagas.</p>
     </div>
     <div class="meter reveal">
       <div class="meter-top"><span>Primer lote</span><span><b class="ph" id="pct">74%</b> de los cupos ocupados</span></div>
       <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="74" aria-label="Cupos ocupados"><i id="barfill" data-w="74"></i></div>
     </div>
     <div class="lots reveal">
-      <div class="lot off"><span class="nm">2.º lote</span><div class="pr ph">$147</div><span class="st">Próximamente</span></div>
+      <div class="lot off"><span class="nm ph">2.º lote</span><div class="pr ph">$147</div><span class="st">Próximamente</span></div>
       <div class="lot on">
-        <span class="nm">1.er lote · Disponible hoy</span>
+        <span class="nm ph">1.er lote · Disponible hoy</span>
         <div class="pr ph">$97</div>
         <p class="anchor">Valor real <s class="ph">$674</s> · Pago único</p>
         <ul>
-          <li><svg class="ic"><use href="#i-check"/></svg>2 días de taller en vivo</li>
-          <li><svg class="ic"><use href="#i-check"/></svg>Área de miembros por 1 año</li>
-          <li><svg class="ic"><use href="#i-check"/></svg>Bono 1 y Bono 2 incluidos</li>
-          <li><svg class="ic"><use href="#i-check"/></svg>Certificado y comunidad privada</li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="ph">2 días de taller en vivo</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="ph">Área de miembros por 1 año</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="ph">Bono 1 y Bono 2 incluidos</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="ph">Certificado y comunidad privada</span></li>
         </ul>
         <button class="btn btn-gold btn-lg" data-open-modal>Reservar cupo <svg class="ic"><use href="#i-arrow"/></svg></button>
       </div>
-      <div class="lot off"><span class="nm">3.er lote</span><div class="pr ph">$197</div><span class="st">Próximamente</span></div>
+      <div class="lot off"><span class="nm ph">3.er lote</span><div class="pr ph">$197</div><span class="st">Próximamente</span></div>
     </div>
     <p class="center" style="margin-top:34px;display:flex;justify-content:center;gap:10px;align-items:center;color:var(--band-muted);font-size:.88rem"><svg class="ic"><use href="#i-lock"/></svg>Tus datos están protegidos</p>
   </div>
@@ -772,7 +827,7 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   <div class="wrap">
     <div class="guar reveal">
       <svg class="ic"><use href="#i-shield"/></svg>
-      <div><h3>Garantía de <span class="ph">7 días</span></h3><p>Entra, mira las primeras clases y, si no es para ti, te devolvemos tu inversión. Aquí va la política real de tu negocio, escrita en lenguaje claro y sin letra pequeña.</p></div>
+      <div><h3>Garantía de <span class="ph">7 días</span></h3><p class="ph">Entra, mira las primeras clases y, si no es para ti, te devolvemos tu inversión. Aquí va la política real de tu negocio, escrita en lenguaje claro y sin letra pequeña.</p></div>
     </div>
   </div>
 </section>
@@ -780,13 +835,13 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 <!-- FAQ -->
 <section class="sec" id="faq">
   <div class="wrap faq-grid">
-    <div class="reveal"><span class="eyebrow">Preguntas frecuentes</span><h2 style="margin-top:16px">¿Te quedó alguna <em>duda</em>?</h2><p class="lead" style="margin-top:18px">Resuelve aquí las objeciones más comunes antes de que te las pregunten.</p></div>
+    <div class="reveal"><span class="eyebrow">Preguntas frecuentes</span><h2 style="margin-top:16px">¿Te quedó alguna <em>duda</em>?</h2><p class="lead ph" style="margin-top:18px">Resuelve aquí las objeciones más comunes antes de que te las pregunten.</p></div>
     <div class="acc reveal" style="--d:.1s">
-      <div class="acc-item open"><h3><button class="acc-q" aria-expanded="true" aria-controls="f1" id="fq1"><span>¿Necesito experiencia previa?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f1" role="region" aria-labelledby="fq1"><div><p>Aclara a quién va dirigido tu curso y qué nivel mínimo necesita una persona para aprovecharlo.</p></div></div></div>
-      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f2" id="fq2"><span>¿Qué pasa si no puedo asistir en vivo?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f2" role="region" aria-labelledby="fq2"><div><p>Todas las sesiones quedan grabadas en el área de miembros, disponibles durante 1 año.</p></div></div></div>
-      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f3" id="fq3"><span>¿Recibo certificado?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f3" role="region" aria-labelledby="fq3"><div><p>Sí, un certificado digital de participación al terminar el taller.</p></div></div></div>
-      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f4" id="fq4"><span>¿Cuáles son las formas de pago?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f4" role="region" aria-labelledby="fq4"><div><p>Menciona tarjeta, transferencia u otros métodos disponibles en tu país.</p></div></div></div>
-      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f5" id="fq5"><span>¿Cómo pido ayuda si tengo un problema?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f5" role="region" aria-labelledby="fq5"><div><p>Indica tu canal de soporte y el tiempo de respuesta habitual.</p></div></div></div>
+      <div class="acc-item open"><h3><button class="acc-q" aria-expanded="true" aria-controls="f1" id="fq1"><span class="ph">¿Necesito experiencia previa?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f1" role="region" aria-labelledby="fq1"><div><p class="ph">Aclara a quién va dirigido tu curso y qué nivel mínimo necesita una persona para aprovecharlo.</p></div></div></div>
+      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f2" id="fq2"><span class="ph">¿Qué pasa si no puedo asistir en vivo?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f2" role="region" aria-labelledby="fq2"><div><p class="ph">Todas las sesiones quedan grabadas en el área de miembros, disponibles durante 1 año.</p></div></div></div>
+      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f3" id="fq3"><span class="ph">¿Recibo certificado?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f3" role="region" aria-labelledby="fq3"><div><p class="ph">Sí, un certificado digital de participación al terminar el taller.</p></div></div></div>
+      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f4" id="fq4"><span class="ph">¿Cuáles son las formas de pago?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f4" role="region" aria-labelledby="fq4"><div><p class="ph">Menciona tarjeta, transferencia u otros métodos disponibles en tu país.</p></div></div></div>
+      <div class="acc-item"><h3><button class="acc-q" aria-expanded="false" aria-controls="f5" id="fq5"><span class="ph">¿Cómo pido ayuda si tengo un problema?</span><svg class="ic"><use href="#i-plus"/></svg></button></h3><div class="acc-a" id="f5" role="region" aria-labelledby="fq5"><div><p class="ph">Indica tu canal de soporte y el tiempo de respuesta habitual.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -817,13 +872,13 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
     <div class="stack-c">
       <span class="eyebrow reveal">Último aviso</span>
       <h2 class="reveal" style="--d:.05s">Tu siguiente nivel empieza <em>en</em></h2>
-      <div class="cd reveal" style="--d:.1s" role="timer" aria-label="Cuenta regresiva">
+      <div class="cd reveal" style="--d:.1s" role="timer" aria-label="Cuenta regresiva" data-deadline="2026-11-14T20:00:00-06:00">
         <div><b data-cd="d">20</b><small>días</small></div>
         <div><b data-cd="h">00</b><small>horas</small></div>
         <div><b data-cd="m">00</b><small>min</small></div>
         <div><b data-cd="s">00</b><small>seg</small></div>
       </div>
-      <p class="lead reveal" style="--d:.15s">Los cupos son limitados. Si todos se llenan antes de la fecha de inicio, esta página se retira sin previo aviso.</p>
+      <p class="lead reveal ph" style="--d:.15s">Los cupos son limitados. Si todos se llenan antes de la fecha de inicio, esta página se retira sin previo aviso.</p>
       <div class="reveal" style="--d:.2s"><button class="btn btn-gold btn-lg" data-open-modal>Quiero reservar mi cupo <svg class="ic"><use href="#i-arrow"/></svg></button></div>
       <p class="wa reveal" style="--d:.25s"><svg class="ic"><use href="#i-chat"/></svg>¿Dudas? Escríbenos por WhatsApp: <b class="ph">+00 000 000 0000</b></p>
     </div>
@@ -833,8 +888,8 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 
 <footer>
   <div class="wrap">
-    <span>© 2026 <span class="ph">Tu Marca</span>. Todos los derechos reservados.</span>
-    <nav aria-label="Legal"><span>Política de privacidad</span><span>Términos de uso</span><span class="ph">tucorreo@tudominio.com</span></nav>
+    <div class="foot-brand"><span class="mono">T</span><div><b class="ph">Tu Marca</b><span>© 2026. Todos los derechos reservados.</span></div></div>
+    <nav aria-label="Legal"><a href="#">Política de privacidad</a><a href="#">Términos de uso</a><a class="ph" href="mailto:tucorreo@tudominio.com">tucorreo@tudominio.com</a></nav>
   </div>
 </footer>
 
@@ -847,14 +902,14 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mt">
     <button class="x" data-close aria-label="Cerrar"><svg class="ic"><use href="#i-plus"/></svg></button>
     <div id="mform">
-      <h3 id="mt">Reserva tu cupo</h3>
-      <p>Completa tus datos para continuar con tu inscripción antes de que cierre el primer lote.</p>
-      <form id="form" novalidate>
+      <h3 id="mt" class="ph">Reserva tu cupo</h3>
+      <p class="ph">Completa tus datos para continuar con tu inscripción antes de que cierre el primer lote.</p>
+      <form id="form">
         <div class="fld"><label for="f-name">Nombre completo</label><input id="f-name" type="text" autocomplete="name" placeholder="Tu nombre" required></div>
         <div class="fld"><label for="f-mail">Correo electrónico</label><input id="f-mail" type="email" autocomplete="email" placeholder="tu@correo.com" required></div>
         <div class="fld"><label for="f-wa">WhatsApp</label><input id="f-wa" type="text" inputmode="tel" autocomplete="tel" placeholder="+00 000 000 0000"></div>
         <div class="fld"><label for="f-job">Tu profesión</label>
-          <select id="f-job"><option>Selecciona una opción</option><option>Médico(a)</option><option>Odontólogo(a)</option><option>Enfermero(a)</option><option>Esteticista</option><option>Otra</option></select></div>
+          <select id="f-job" required><option value="" disabled selected>Selecciona una opción</option><option>Médico(a)</option><option>Odontólogo(a)</option><option>Enfermero(a)</option><option>Esteticista</option><option>Otra</option></select></div>
         <button class="btn btn-gold btn-lg" type="submit">Continuar con mi inscripción <svg class="ic"><use href="#i-arrow"/></svg></button>
         <p class="fine"><svg class="ic"><use href="#i-lock"/></svg>Tus datos están protegidos.</p>
       </form>
@@ -908,7 +963,7 @@ document.documentElement.classList.add('js');
   }
 
   /* countdown */
-  var T0=new Date('2026-11-14T20:00:00-06:00').getTime();
+  var T0=new Date($('[data-deadline]').getAttribute('data-deadline')).getTime();
   function target(){var t=T0,n=Date.now();while(t<n)t+=30*864e5;return t}
   var tg=target();
   function pad(n){return n<10?'0'+n:String(n)}
@@ -956,6 +1011,7 @@ document.documentElement.classList.add('js');
   function onScroll(){
     var h=document.documentElement,max=h.scrollHeight-innerHeight,p=max>0?Math.min(1,Math.max(0,(window.scrollY||h.scrollTop)/max)):0;
     if(prog)prog.style.transform='scaleX('+p+')';
+    $('header.top').classList.toggle('scrolled',(window.scrollY||h.scrollTop)>8);
     var hb=hero?hero.getBoundingClientRect().bottom:0,fin=$('#cierre'),fb=fin?fin.getBoundingClientRect().top:9999;
     if(dock)dock.classList.toggle('show',hb<0&&fb>innerHeight*.6);
     ticking=false;
@@ -963,14 +1019,29 @@ document.documentElement.classList.add('js');
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
   onScroll();
 
+  /* mobile menu */
+  var mb=$('.menu'),nv=$('#nav');
+  function setMenu(o){nv.classList.toggle('open',o);mb.setAttribute('aria-expanded',o?'true':'false')}
+  mb.addEventListener('click',function(){setMenu(!nv.classList.contains('open'))});
+  $$('#nav a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+
   /* modal */
   var modal=$('#modal'),mform=$('#mform'),mok=$('#mok'),last=null;
-  function openM(){last=document.activeElement;mform.hidden=false;mok.hidden=true;modal.hidden=false;setTimeout(function(){var f=$('#f-name');if(f)f.focus()},60)}
-  function closeM(){modal.hidden=true;if(last&&last.focus)last.focus()}
+  function openM(){last=document.activeElement;document.body.style.overflow='hidden';mform.hidden=false;mok.hidden=true;modal.hidden=false;setTimeout(function(){var f=$('#f-name');if(f)f.focus()},60)}
+  function closeM(){modal.hidden=true;document.body.style.overflow='';if(last&&last.focus)last.focus()}
   $$('[data-open-modal]').forEach(function(b){b.addEventListener('click',openM)});
   $$('[data-close]').forEach(function(b){b.addEventListener('click',closeM)});
   modal.addEventListener('click',function(e){if(e.target===modal)closeM()});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeM()});
+  document.addEventListener('keydown',function(e){
+    if(modal.hidden)return;
+    if(e.key==='Escape')return closeM();
+    if(e.key!=='Tab')return;
+    var f=$$('button,input,select,a[href]',modal).filter(function(x){return x.offsetParent}),a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+    else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
+  });
   $('#form').addEventListener('submit',function(e){e.preventDefault();mform.hidden=true;mok.hidden=false});
 })();
 </script>
+</body>
+</html>
